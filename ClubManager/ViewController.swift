@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     
-    @IBOutlet weak var signUpButton: UIButton!
+   // @IBOutlet weak var signUpButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpElement()
@@ -20,7 +20,7 @@ class ViewController: UIViewController {
 
     func setUpElement(){
         Utilities.styleFilledButton(loginButton)
-        Utilities.styleHollowButton(signUpButton)
+      //  Utilities.styleHollowButton(signUpButton)
     }
 
 }

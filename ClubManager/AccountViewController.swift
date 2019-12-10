@@ -29,7 +29,7 @@ class AccountViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        sepUpElement()
+        //sepUpElement()
         setLabel()
         // Do any additional setup after loading the view.
     }
@@ -41,9 +41,13 @@ class AccountViewController: UIViewController {
     func setLabel() {
         let mail = Auth.auth().currentUser?.email
         if (mail == "admin@123.com"){
+            
             firstNameLabel.text  = "ADMIN"
+            lastNameLabel.textColor = #colorLiteral(red: 0.9487857223, green: 0.240226537, blue: 0.1816714108, alpha: 1)
             lastNameLabel.text = "nil"
+             idLabel.textColor = #colorLiteral(red: 0.9487857223, green: 0.240226537, blue: 0.1816714108, alpha: 1)
             idLabel.text = "nil"
+            phoneLabel.textColor = #colorLiteral(red: 0.9487857223, green: 0.240226537, blue: 0.1816714108, alpha: 1)
             phoneLabel.text = "nil"
             emailLabel.text = mail
             editButton.alpha = 0

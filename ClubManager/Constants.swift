@@ -13,5 +13,7 @@ struct Constants{
         static let mainView = "MainViewController"
         static let loginView = "LoginViewController"
         static let homeView = "HomeView"
+        static let signUpView = "SignUpViewController"
+        static let memberView = "MemberTableViewController"
 }
 }

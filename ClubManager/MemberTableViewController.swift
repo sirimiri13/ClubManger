@@ -7,12 +7,22 @@
 //
 
 import UIKit
+import SCLAlertView
+import FirebaseAuth
+import Firebase
+
 
 class MemberTableViewController: UITableViewController {
+   
+    var lastName : String = ""
+    var firstName: String = ""
 
+    let db = Firestore.firestore()
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-
+        tableView.reloadData()
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -32,15 +42,18 @@ class MemberTableViewController: UITableViewController {
         return 0
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
+        
+       
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellMember", for: indexPath)
+        
+        let userInfo = Auth.auth().currentUser?.providerData[indexPath.row]
+        cell.textLabel?.text = userInfo?.email
         // Configure the cell...
 
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.
@@ -86,5 +99,24 @@ class MemberTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    
+    
+    @IBAction func addMember(_ sender: Any) {
+        let mail = Auth.auth().currentUser?.email
+        if (mail == "admin@123.com"){
+            transitionHone()
+        }
+        else {
+            let alert = SCLAlertView()
+            alert.showNotice("", subTitle: "You can not create new account")
+        }
+    }
+   /* @IBAction func cancelButton(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }*/
+    func transitionHone(){
+           let mainView = storyboard?.instantiateViewController(identifier: Constants.StoryBoard.signUpView ) as? SignUpViewController
+           view.window?.rootViewController = mainView
+           view.window?.makeKeyAndVisible()
+       }
 }

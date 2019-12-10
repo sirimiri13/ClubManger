@@ -46,17 +46,9 @@ class SignUpViewController: UIViewController {
     }
 
     @IBAction func cancelTapped(_ sender: Any) {
-      //  dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
     func  validateField() -> String? {
         if (firstNameTextField.text == "" || lastNameTextField.text == "" || IDTextField.text == "" || phoneTextField.text == "" || emailTextField.text == ""){
             return "Please complete all info"
@@ -96,12 +88,21 @@ class SignUpViewController: UIViewController {
                     else {
                         let alert = SCLAlertView()
                         alert.showSuccess("", subTitle: "Your account is created!")
+                        self.lastNameTextField.text = ""
+                        self.firstNameTextField.text = ""
+                        self.IDTextField.text = ""
+                        self.phoneTextField.text = ""
+                        self.emailTextField.text = ""
+                        self.passTextField.text = ""
+                        self.confirmPassTextField.text = ""
+                        try! Auth.auth().signOut()
+                        Auth.auth().signIn(withEmail: "admin@123.com", password: "Admin@123", completion: nil )
                         }
                 }
-                self.transitionHone()
             }
         }
     }
+        
     }
     
     func showError(message: String){
@@ -109,7 +110,7 @@ class SignUpViewController: UIViewController {
         errorLabel.alpha = 1
     }
     func transitionHone(){
-        let mainView = storyboard?.instantiateViewController(identifier: Constants.StoryBoard.loginView ) as? LoginViewController
+        let mainView = storyboard?.instantiateViewController(identifier: Constants.StoryBoard.mainView) as? MainViewController
         view.window?.rootViewController = mainView
         view.window?.makeKeyAndVisible()
     }
