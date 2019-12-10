@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D74266A239962800074DC00 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D742669239962800074DC00 /* MainViewController.swift */; };
+		2D74266C239962AF0074DC00 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D74266B239962AF0074DC00 /* SignUpViewController.swift */; };
+		2D74266E239962BC0074DC00 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D74266D239962BC0074DC00 /* LoginViewController.swift */; };
+		2D74267223996D4A0074DC00 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2D74267123996D4A0074DC00 /* GoogleService-Info.plist */; };
+		2D742674239A38EA0074DC00 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D742673239A38EA0074DC00 /* Constants.swift */; };
 		2D8071FB239602EC007F4083 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8071FA239602EC007F4083 /* AppDelegate.swift */; };
 		2D8071FD239602EC007F4083 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8071FC239602EC007F4083 /* SceneDelegate.swift */; };
 		2D8071FF239602EC007F4083 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8071FE239602EC007F4083 /* ViewController.swift */; };
@@ -21,12 +26,18 @@
 		2D807219239610AE007F4083 /* ChangePassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D807218239610AE007F4083 /* ChangePassViewController.swift */; };
 		2D80721B239610BC007F4083 /* FundsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D80721A239610BC007F4083 /* FundsViewController.swift */; };
 		2D80721D239610CA007F4083 /* CreateFundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D80721C239610CA007F4083 /* CreateFundViewController.swift */; };
+		2D872810239FC5C6001C149E /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D87280F239FC5C6001C149E /* Utilities.swift */; };
 		2DB4D9272396150800EEBD97 /* MemberTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB4D9262396150800EEBD97 /* MemberTableViewController.swift */; };
 		2DB4D9292396162800EEBD97 /* AttendanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB4D9282396162800EEBD97 /* AttendanceViewController.swift */; };
 		DAE5620A8408DE4C162EC642 /* Pods_ClubManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD4547C81B7318EB093F6E5B /* Pods_ClubManager.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D742669239962800074DC00 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		2D74266B239962AF0074DC00 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		2D74266D239962BC0074DC00 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		2D74267123996D4A0074DC00 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2D742673239A38EA0074DC00 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2D8071F7239602EC007F4083 /* ClubManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClubManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D8071FA239602EC007F4083 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2D8071FC239602EC007F4083 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,6 +54,7 @@
 		2D807218239610AE007F4083 /* ChangePassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePassViewController.swift; sourceTree = "<group>"; };
 		2D80721A239610BC007F4083 /* FundsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundsViewController.swift; sourceTree = "<group>"; };
 		2D80721C239610CA007F4083 /* CreateFundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFundViewController.swift; sourceTree = "<group>"; };
+		2D87280F239FC5C6001C149E /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		2DB4D9262396150800EEBD97 /* MemberTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberTableViewController.swift; sourceTree = "<group>"; };
 		2DB4D9282396162800EEBD97 /* AttendanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceViewController.swift; sourceTree = "<group>"; };
 		7917284574D2C2E39D2ED519 /* Pods-ClubManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClubManager.debug.xcconfig"; path = "Target Support Files/Pods-ClubManager/Pods-ClubManager.debug.xcconfig"; sourceTree = "<group>"; };
@@ -90,6 +102,7 @@
 				2D807203239602F8007F4083 /* Assets.xcassets */,
 				2D807205239602F8007F4083 /* LaunchScreen.storyboard */,
 				2D807208239602F8007F4083 /* Info.plist */,
+				2D74267123996D4A0074DC00 /* GoogleService-Info.plist */,
 				2D80720E239605C2007F4083 /* CreatePostViewController.swift */,
 				2D80721023961061007F4083 /* PostViewController.swift */,
 				2D80721223961078007F4083 /* PostTableViewController.swift */,
@@ -100,6 +113,11 @@
 				2D80721C239610CA007F4083 /* CreateFundViewController.swift */,
 				2DB4D9262396150800EEBD97 /* MemberTableViewController.swift */,
 				2DB4D9282396162800EEBD97 /* AttendanceViewController.swift */,
+				2D742669239962800074DC00 /* MainViewController.swift */,
+				2D74266B239962AF0074DC00 /* SignUpViewController.swift */,
+				2D74266D239962BC0074DC00 /* LoginViewController.swift */,
+				2D742673239A38EA0074DC00 /* Constants.swift */,
+				2D87280F239FC5C6001C149E /* Utilities.swift */,
 			);
 			path = ClubManager;
 			sourceTree = "<group>";
@@ -182,6 +200,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D807207239602F8007F4083 /* LaunchScreen.storyboard in Resources */,
+				2D74267223996D4A0074DC00 /* GoogleService-Info.plist in Resources */,
 				2D807204239602F8007F4083 /* Assets.xcassets in Resources */,
 				2D807202239602EC007F4083 /* Main.storyboard in Resources */,
 			);
@@ -242,13 +261,18 @@
 				2D80721523961090007F4083 /* AccountViewController.swift in Sources */,
 				2D807219239610AE007F4083 /* ChangePassViewController.swift in Sources */,
 				2D8071FB239602EC007F4083 /* AppDelegate.swift in Sources */,
+				2D872810239FC5C6001C149E /* Utilities.swift in Sources */,
 				2D8072172396109C007F4083 /* EditAccountViewController.swift in Sources */,
+				2D74266A239962800074DC00 /* MainViewController.swift in Sources */,
 				2D80720F239605C2007F4083 /* CreatePostViewController.swift in Sources */,
+				2D74266C239962AF0074DC00 /* SignUpViewController.swift in Sources */,
 				2D80721B239610BC007F4083 /* FundsViewController.swift in Sources */,
 				2D8071FD239602EC007F4083 /* SceneDelegate.swift in Sources */,
+				2D74266E239962BC0074DC00 /* LoginViewController.swift in Sources */,
 				2DB4D9272396150800EEBD97 /* MemberTableViewController.swift in Sources */,
 				2D80721D239610CA007F4083 /* CreateFundViewController.swift in Sources */,
 				2D80721123961061007F4083 /* PostViewController.swift in Sources */,
+				2D742674239A38EA0074DC00 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
