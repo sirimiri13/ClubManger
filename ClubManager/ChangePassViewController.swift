@@ -9,10 +9,12 @@
 import UIKit
 import FirebaseAuth
 import Firebase
+import SCLAlertView
 
 class ChangePassViewController: UIViewController {
     let db = Firestore.firestore()
 
+    @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var confirmPassTextField: UITextField!
@@ -20,36 +22,55 @@ class ChangePassViewController: UIViewController {
     @IBOutlet weak var oldPassTextField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        errorLabel.alpha = 0
         // Do any additional setup after loading the view.
     }
     func setUpElement(){
         Utilities.styleFilledButton(backButton)
         Utilities.styleHollowButton(saveButton)
+        errorLabel.alpha = 0
     }
     @IBAction func backButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     @IBAction func saveTapped(_ sender: Any) {
         
-        /*self.showTextInputPrompt(withMessage: "New Password:") { (userPressedOK, userInput) in
-          if let password = userInput {
-            self.showSpinner {
-              // [START change_password]
-              Auth.auth().currentUser?.updatePassword(to: password) { (error) in
-                // [START_EXCLUDE]
-                self.hideSpinner {
-                  self.showTypicalUIForUserUpdateResults(withTitle: self.kChangePasswordText, error: error)
-                }
-                // [END_EXCLUDE]
-              }
-              // [END change_password]
+        if (oldPassTextField.text == password)
+        {
+            if (Utilities.isPasswordValid(newPassTextField.text!) == false)
+            {
+                errorLabel.text =  "Please check your password is least 8 characters, contains a special character and a number"
+                errorLabel.alpha = 1
             }
-          } else {
-            self.showMessagePrompt("password can't be empty")
-          }
-        }*/
+            else {
+            if (newPassTextField.text == confirmPassTextField.text){
+                Auth.auth().currentUser?.updatePassword(to: newPassTextField.text!){(error) in
+                    if error != nil {
+                      self.errorLabel.text = error!.localizedDescription
+                        self.errorLabel.alpha = 1
+                    }
+                    else
+                    {
+                        let alert = SCLAlertView()
+                        alert.showSuccess("", subTitle: "Your password have been changed")
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                }
+            }
+            else{
+                errorLabel.text = "* Password is not match"
+                errorLabel.alpha = 1
+            }
+                
+            }
+        }
+            else {
+            errorLabel.text = "Current password is wrong"
+            errorLabel.alpha = 1
+                }
     }
+
+            
     
     /*
     // MARK: - Navigation

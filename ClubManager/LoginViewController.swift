@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseAuth
 import Firebase
-
+var password: String? = nil
 class LoginViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passTextField: UITextField!
@@ -45,6 +45,7 @@ class LoginViewController: UIViewController {
                 self.errorLabel.alpha = 1
             }
             else{
+                password = pass
                 self.transitionHone()
             }
         }

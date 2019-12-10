@@ -469,6 +469,9 @@
                                 <rect key="frame" x="-2" y="758" width="414" height="77"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="CHANGE YOUR PASSWORD"/>
+                                <connections>
+                                    <segue destination="QjE-Mk-2nu" kind="presentation" modalPresentationStyle="fullScreen" id="juJ-fz-xw6"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -535,16 +538,16 @@
                                 <rect key="frame" x="34" y="381" width="360" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="456" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wEb-XD-HEK">
                                 <rect key="frame" x="34" y="476" width="360" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u3K-7b-5nD">
-                                <rect key="frame" x="110" y="620" width="194" height="52"/>
+                                <rect key="frame" x="110" y="671" width="194" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="SAVE">
@@ -554,8 +557,15 @@
                                     <action selector="saveTapped:" destination="QjE-Mk-2nu" eventType="touchUpInside" id="XWF-hJ-QCg"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="error" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Gv-xO-CHN">
+                                <rect key="frame" x="34" y="533" width="360" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DZF-Rn-iqc">
-                                <rect key="frame" x="110" y="552" width="194" height="52"/>
+                                <rect key="frame" x="110" y="611" width="194" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="BACK">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -571,6 +581,7 @@
                     <connections>
                         <outlet property="backButton" destination="DZF-Rn-iqc" id="xMV-me-PhM"/>
                         <outlet property="confirmPassTextField" destination="wEb-XD-HEK" id="SvL-za-Fh6"/>
+                        <outlet property="errorLabel" destination="0Gv-xO-CHN" id="Xfz-e5-tax"/>
                         <outlet property="newPassTextField" destination="63H-v1-eIT" id="nLY-Qr-LF3"/>
                         <outlet property="oldPassTextField" destination="PGc-Ys-Nop" id="6KE-ve-62k"/>
                         <outlet property="saveButton" destination="u3K-7b-5nD" id="5ny-Qh-VR0"/>
@@ -578,7 +589,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t67-mj-vRi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2313" y="1321"/>
+            <point key="canvasLocation" x="2311.594202898551" y="1320.5357142857142"/>
         </scene>
         <!--Edit Account View Controller-->
         <scene sceneID="QON-68-sl9">
