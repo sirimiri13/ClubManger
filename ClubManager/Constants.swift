@@ -15,5 +15,8 @@ struct Constants{
         static let homeView = "HomeView"
         static let signUpView = "SignUpViewController"
         static let memberView = "MemberTableViewController"
+        static let createNewClubView = "CreateNewClubViewController"
+        static let createPostView = "CreatePostViewController"
+        static let postTableView = "PostTableViewController"
 }
 }

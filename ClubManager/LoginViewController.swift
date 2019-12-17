@@ -9,44 +9,53 @@
 import UIKit
 import FirebaseAuth
 import Firebase
-var password: String? = nil
+var view = UIView()
 class LoginViewController: UIViewController {
+   
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     
-    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var errorLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpElement()
         // Do any additional setup after loading the view.
+       // view.backgroundColor = .blue
     }
     
     func setUpElement(){
-        
+        emailTextField.backgroundColor = .white
+        emailTextField.borderStyle = .roundedRect
+        passTextField.backgroundColor = .white
+        passTextField.borderStyle = .roundedRect
         errorLabel.alpha = 0
         Utilities.styleTextField(emailTextField)
         Utilities.styleTextField(passTextField)
         Utilities.styleFilledButton(loginButton)
-        Utilities.styleHollowButton(cancelButton)
+        Utilities.styleHollowButton(backButton)
+       
     }
 
-    @IBAction func cancelTapped(_ sender: UIButton) {
-        dismiss(animated:false, completion: nil)
+    @IBAction func backTapped(_ sender: Any) {
+         dismiss(animated: true, completion: nil)
+//        let vc = storyboard?.instantiateViewController(withIdentifier: "ViewController") as! ViewController
+//        present(vc, animated: false)
     }
+    
     @IBAction func loginTapped(_ sender: Any) {
         let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         let pass = passTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         
         Auth.auth().signIn(withEmail: email, password: pass){ (result,error) in
             if error != nil{
-                self.errorLabel.text = error!.localizedDescription
+                self.errorLabel.text = "* \(error!.localizedDescription)"  
                 self.errorLabel.alpha = 1
             }
             else{
-                password = pass
                 self.transitionHone()
+                
             }
         }
     }

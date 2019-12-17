@@ -13,12 +13,13 @@ import SCLAlertView
 
 
 class SignUpViewController: UIViewController {
-
+    let db = Firestore.firestore()
+    let acc = Auth.auth().currentUser?.email
+    var passUser = ""
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var signupButton: UIButton!
-    @IBOutlet weak var passTextField: UITextField!
-    @IBOutlet weak var confirmPassTextField: UITextField!
+   
     @IBOutlet weak var phoneTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var IDTextField: UITextField!
@@ -27,38 +28,41 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpElement()
-
-        // Do any additional setup after loading the view.
+        
+        let uid = Auth.auth().currentUser?.uid
+        db.collection("admin").whereField("uid", isEqualTo: uid).getDocuments { (snapshot, err) in
+        if let err = err {
+            print(err.localizedDescription)
+        }
+        else {
+            for document in (snapshot?.documents)! {
+                if let password = document.data()["pass"] as? String {
+                    self.passUser = password
+                    }
+                }
+            }
+        }
     }
     
     func setUpElement(){
         errorLabel.alpha = 0
-        
         Utilities.styleTextField(firstNameTextField)
         Utilities.styleTextField(lastNameTextField)
         Utilities.styleTextField(IDTextField)
         Utilities.styleTextField(emailTextField)
         Utilities.styleTextField(phoneTextField)
-        Utilities.styleTextField(passTextField)
-        Utilities.styleTextField(confirmPassTextField)
+      
         Utilities.styleFilledButton(signupButton)
         Utilities.styleHollowButton(cancelButton)
     }
 
     @IBAction func cancelTapped(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: false, completion: nil)
     }
     
     func  validateField() -> String? {
         if (firstNameTextField.text == "" || lastNameTextField.text == "" || IDTextField.text == "" || phoneTextField.text == "" || emailTextField.text == ""){
             return "Please complete all info"
-        }
-        if (passTextField.text != confirmPassTextField.text){
-            return  "Password is not matched"
-        }
-        let pass = passTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        if (Utilities.isPasswordValid(pass) == false){
-            return "Please check your password is least 8 characters, contains a special character and a number"
         }
         return nil
     }
@@ -73,31 +77,31 @@ class SignUpViewController: UIViewController {
             let ID = IDTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let phone = phoneTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let pass = passTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+          //  let pass = passTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
     
-            Auth.auth().createUser(withEmail: email , password: pass) { (result, err) in
+            Auth.auth().createUser(withEmail: email , password: email) { (result, err) in
                 if  err != nil {
                     self.showError(message: "* Error creating user")
                 }
                 else{
                    let db =  Firestore.firestore()
-                    db.collection("user").document(email).setData(["firstName": firstName, "lastName" : lastName,"ID" : ID ,"email" : email, "phone" : phone, "uid" : result?.user.uid ?? ""])  {(error) in
+                    db.collection("user").document(email).setData(["firstName": firstName, "lastName" : lastName,"ID" : ID ,"email" : email, "phone" : phone, "pass": email, "uid" : result?.user.uid ?? ""])  {(error) in
                     if error != nil {
                         self.showError(message: "* Error saving user")
                     }
                     else {
                         let alert = SCLAlertView()
-                        alert.showSuccess("", subTitle: "Your account is created!")
+                        alert.showSuccess("The account is created!", subTitle: "The password is email")
                         self.lastNameTextField.text = ""
                         self.firstNameTextField.text = ""
                         self.IDTextField.text = ""
                         self.phoneTextField.text = ""
                         self.emailTextField.text = ""
-                        self.passTextField.text = ""
-                        self.confirmPassTextField.text = ""
                         try! Auth.auth().signOut()
-                        Auth.auth().signIn(withEmail: "admin@123.com", password: "Admin@123", completion: nil )
+                        try! Auth.auth().signIn(withEmail: self.acc!, password: self.passUser){ (result,error) in
                         }
+
+                    }
                 }
             }
         }

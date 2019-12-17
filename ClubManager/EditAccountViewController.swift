@@ -14,11 +14,12 @@ class EditAccountViewController: UIViewController {
     let db = Firestore.firestore()
     @IBOutlet weak var saveButton: UIButton!
     
+    @IBOutlet weak var idTextField: UILabel!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var phoneTextField: UITextField!
 
     @IBOutlet weak var emailTextField: UILabel!
-    @IBOutlet weak var idTextField: UITextField!
+
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var firstNameTextField: UITextField!
     override func viewDidLoad() {
@@ -30,8 +31,8 @@ class EditAccountViewController: UIViewController {
     
     
     func setupElement(){
-        Utilities.styleHollowButton(saveButton)
-        Utilities.styleFilledButton(backButton)
+        Utilities.styleHollowButton(backButton)
+        Utilities.styleFilledButton(saveButton)
     }
     
     func setTextField(){
@@ -55,7 +56,7 @@ class EditAccountViewController: UIViewController {
                         self.emailTextField.text = email
                     }
                     if let ID = document.data()["ID"] as? String {
-                        self.idTextField.placeholder = ID                }
+                        self.idTextField.text = ID                }
                     }
                 }
             }
@@ -63,7 +64,7 @@ class EditAccountViewController: UIViewController {
     @IBAction func saveTapped(_ sender: Any) {
         var fName = firstNameTextField.placeholder!
         var lName = lastNameTextField.placeholder!
-        var ID = idTextField.placeholder!
+        var ID = idTextField.text!
         var email = emailTextField.text!
         var phoneNumber = phoneTextField.placeholder!
         
@@ -73,17 +74,14 @@ class EditAccountViewController: UIViewController {
         if (lastNameTextField.text != ""){
             lName = lastNameTextField.text!
         }
-        if (idTextField.text != ""){
-            ID = idTextField.text!
-        }
+        
         if (phoneTextField.text != "")
         {
             phoneNumber = phoneTextField.text!
         }
-      
         let mailAcc = Auth.auth().currentUser?.email
         let account = db.collection("user").document(mailAcc!)
-        account.updateData(["firstName": fName, "lastName" : lName, "ID" : ID , "phone" : phoneNumber]) { (error) in
+        account.updateData(["firstName": fName, "lastName" : lName , "phone" : phoneNumber]) { (error) in
             if let error = error
             {
                 let alert = SCLAlertView()

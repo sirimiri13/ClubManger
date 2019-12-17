@@ -7,19 +7,42 @@
 //
 
 import UIKit
+import FirebaseAuth
+import Firebase
+import SCLAlertView
 
 class PostTableViewController: UITableViewController {
-
+    var collect = ""
+    let db = Firestore.firestore()
+    let user = Auth.auth().currentUser?.email 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+         db.collection("user").getDocuments { (querySnapshot, error) in
+                                  for acc in querySnapshot!.documents{
+                                      if (acc.documentID == self.user){
+                                         self.collect = "user"}
+                             }
+                         }
+                         if (collect == "")
+                             {
+                                 collect = "admin"
+                             }
     }
 
+    @IBAction func addPostTapped(_ sender: Any) {
+        if (collect == "admin"){
+           transitionHome()
+        }
+        else {
+            let alert = SCLAlertView()
+            alert.showError("", subTitle: "You can not create new post")
+        }
+        
+    }
+    @IBAction func cancelTapped(_ sender: Any) {
+        dismiss(animated: false, completion: nil)
+    }
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -30,6 +53,12 @@ class PostTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return 0
+    }
+    
+    func transitionHome(){
+        let mainView = storyboard?.instantiateViewController(identifier: Constants.StoryBoard.createPostView) as? CreatePostViewController
+        view.window?.rootViewController = mainView
+        view.window?.makeKeyAndVisible()
     }
 
     /*
