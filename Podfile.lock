@@ -273,11 +273,6 @@ PODS:
     - nanopb/encode (= 0.3.9011)
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
-  - Realm (4.1.1):
-    - Realm/Headers (= 4.1.1)
-  - Realm/Headers (4.1.1)
-  - RealmSwift (4.1.1):
-    - Realm (= 4.1.1)
   - SCLAlertView (0.8)
 
 DEPENDENCIES:
@@ -285,7 +280,6 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Firestore
-  - RealmSwift
   - SCLAlertView
 
 SPEC REPOS:
@@ -310,8 +304,6 @@ SPEC REPOS:
     - GTMSessionFetcher
     - leveldb-library
     - nanopb
-    - Realm
-    - RealmSwift
     - SCLAlertView
 
 SPEC CHECKSUMS:
@@ -335,10 +327,8 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 43b8b64263023d4f32caa0b40f4c8bfa3c5f36d8
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
-  Realm: 25f0a8244cbb1c2271c922963ea8666fc2d8104d
-  RealmSwift: 9e2657b33764f80e4a4dffd6d440e24715782052
   SCLAlertView: 6a77bb2edfc65e04dbe57725546cb4107a506b85
 
-PODFILE CHECKSUM: 63168537c751fa6549628d40b808d8e2858e4532
+PODFILE CHECKSUM: fc746aa426922fa7b7899090bced86a16c6302cd
 
 COCOAPODS: 1.8.4

@@ -18,5 +18,7 @@ struct Constants{
         static let createNewClubView = "CreateNewClubViewController"
         static let createPostView = "CreatePostViewController"
         static let postTableView = "PostTableViewController"
+        static let fundView = "FundsViewController"
+        static let createFundView = "CreateFundViewController"
 }
 }

@@ -9,9 +9,11 @@
 import UIKit
 import FirebaseAuth
 import Firebase
+import SCLAlertView
 
 var collect : String = ""
 class MainViewController: UIViewController {
+    var fundTextField : UITextField?
     let db = Firestore.firestore()
     var mail = Auth.auth().currentUser?.email
     @IBOutlet weak var idLabel: UILabel!
@@ -82,6 +84,63 @@ class MainViewController: UIViewController {
         
         }
         
+    @IBAction func fundTapped(_ sender: Any) {
+   
+        db.collection("fund").getDocuments { (querySnapshot, err) in
+            
+            if querySnapshot?.count  != 0 {
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "FundsViewController") as! FundsViewController
+                let navigation = UINavigationController(rootViewController: vc)
+                navigation.modalPresentationStyle = .fullScreen
+                self.present(navigation, animated: true)
+                //self.transitionHome()
+            }
+            else {
+                if (self.idLabel.text == "ADMIN"){
+                    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                    let okAction = UIAlertAction(title: "Ok", style: .default, handler: self.createNewFund)
+                    let alert = UIAlertController(title: "", message: "You haven't had the funds before. Would you like to create a new one?", preferredStyle: .alert)
+                    alert.addAction(cancelAction)
+                    alert.addAction(okAction)
+                    self.present(alert, animated: false)
+                }
+                else {
+                    let alert = SCLAlertView()
+                    alert.showNotice("", subTitle: "The fund does not exist")
+                }
+            }
+        }
+    }
+    
+    func createNewFund(alert: UIAlertAction){
+        let anotherAlert = UIAlertController(title: "Create New Fund", message: "Please enter the amount of funds you currently have", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let createAction = UIAlertAction(title: "Create", style: .default, handler: self.addFund(alert:))
+        anotherAlert.addAction(cancelAction)
+        anotherAlert.addAction(createAction)
+        anotherAlert.addTextField { (fundTextField) in
+            self.getFund(textField: fundTextField)
+        }
+        present(anotherAlert, animated:  false)
+    }
+    
+    func getFund(textField: UITextField){
+        fundTextField = textField
+        fundTextField?.placeholder = "Enter amount of money"
+    }
+    
+    func addFund(alert: UIAlertAction){
+        var amount = fundTextField?.text
+        db.collection("fund").document("total").setData(["reason" : "", "amount" : amount ]) {(err) in
+            let anotherAlert = SCLAlertView()
+            anotherAlert.showSuccess("", subTitle: "The fund is created")
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "FundsViewController") as! FundsViewController
+           let navigation = UINavigationController(rootViewController: vc)
+            navigation.modalPresentationStyle = .fullScreen
+            self.present(navigation, animated: true)
+           // self.transitionHome()
+        }
+    }
     /*
     // MARK: - Navigation
 
@@ -91,5 +150,9 @@ class MainViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    func transitionHome(){
+        let mainView = storyboard?.instantiateViewController(identifier: Constants.StoryBoard.fundView) as? FundsViewController
+        view.window?.rootViewController = mainView
+        view.window?.makeKeyAndVisible()
+    }
 }

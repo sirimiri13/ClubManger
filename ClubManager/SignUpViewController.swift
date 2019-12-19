@@ -56,9 +56,7 @@ class SignUpViewController: UIViewController {
         Utilities.styleHollowButton(cancelButton)
     }
 
-    @IBAction func cancelTapped(_ sender: Any) {
-        dismiss(animated: false, completion: nil)
-    }
+   
     
     func  validateField() -> String? {
         if (firstNameTextField.text == "" || lastNameTextField.text == "" || IDTextField.text == "" || phoneTextField.text == "" || emailTextField.text == ""){

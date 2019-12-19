@@ -12,6 +12,9 @@ import FirebaseAuth
 import Firebase
 
 class ViewController: UIViewController {
+    
+    var emailTextField : UITextField?
+    var passTextField: UITextField?
     let db = Firestore.firestore()
     var count = 0
     @IBOutlet weak var createNewClubButton: UIButton!
@@ -41,23 +44,64 @@ class ViewController: UIViewController {
 
     @IBAction func createNewClubTapped(_ sender: Any) {
          if (count != 0){
-            let alert = SCLAlertView()
-            alert.addButton("OK") {
-                let vc = self.storyboard?.instantiateViewController(withIdentifier: "CreateNewClubViewController") as! CreateNewClubViewController
-                vc.modalPresentationStyle = .fullScreen
-                self.deleteAccount()
-                self.present(vc, animated: false)
-                
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            let createAction = UIAlertAction(title: "Create", style: .default, handler: self.createNewClub)
+            let alert = UIAlertController(title: "Create New Club", message: "The club you are managing will be deleted?", preferredStyle: .alert)
+            alert.addTextField { (emailTextField) in
+                self.getEmailTextField(textField: emailTextField)
             }
-            alert.showWarning("", subTitle: "The club you are managing will be deleted and created a new club ?")
+            alert.addTextField { (passTextField) in
+                self.getPassTextField(textField: passTextField)
             }
+            alert.addAction(cancelAction)
+            alert.addAction(createAction)
+            self.present(alert, animated: false)
+//
+        }
         else {
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "CreateNewClubViewController") as! CreateNewClubViewController
-                          vc.modalPresentationStyle = .fullScreen
-                          self.present(vc, animated: false)
+           let vc = self.storyboard?.instantiateViewController(withIdentifier: "CreateNewClubViewController") as! CreateNewClubViewController
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: false)
         }
-        }
+        
        
+    }
+    
+
+    func getEmailTextField(textField: UITextField){
+        emailTextField = textField
+        emailTextField!.placeholder = "Enter admin's account"
+    }
+    
+    func getPassTextField(textField: UITextField){
+        passTextField =  textField
+        passTextField!.placeholder = "Enter admin's password"
+        passTextField?.isSecureTextEntry = true
+    }
+       
+    func createNewClub(alert: UIAlertAction){
+        db.collection("admin").getDocuments { (querySnapshot, err) in
+            for admin in querySnapshot!.documents{
+                let email = admin.data()["email"] as! String
+                let pass = admin.data()["pass"] as! String
+                if (email == self.emailTextField!.text! &&  pass == self.passTextField!.text){
+                self.deleteAccount()
+                       let vc = self.storyboard?.instantiateViewController(withIdentifier: "CreateNewClubViewController") as! CreateNewClubViewController
+                       vc.modalPresentationStyle = .fullScreen
+                       self.present(vc, animated: false)
+                }
+                else {
+                    let anotherAlert = UIAlertController(title: "Something is wrong", message: "The account or password is wrong", preferredStyle: .alert)
+                    let cancelAction = UIAlertAction(title: "Try Again!", style: .cancel, handler: nil)
+                    anotherAlert.addAction(cancelAction)
+                    self.present(anotherAlert, animated: false)
+                }
+            }
+        }
+
+    }
+    
+    
     func deleteData(collection: String){
         db.collection(collection).getDocuments()
                {
@@ -93,6 +137,7 @@ class ViewController: UIViewController {
                         Auth.auth().currentUser?.delete(completion: { (err) in
                             print("delect \(acc)")
                             self.deleteData(collection: collection)
+                            
                         })
                     }
                 }
@@ -103,7 +148,8 @@ class ViewController: UIViewController {
     
     func deleteAccount(){
         deleteAccountCollection(collection: "user")
-       deleteAccountCollection(collection: "admin")
+        deleteAccountCollection(collection: "admin")
+        deleteData(collection: "post")
     }
     
     func setUpElement(){

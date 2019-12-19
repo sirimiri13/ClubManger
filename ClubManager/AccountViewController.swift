@@ -57,50 +57,7 @@ class AccountViewController: UIViewController {
           Utilities.styleFilledButton(backButton)
 
       }
-//    func setLabel() {
-//        db.collection("admin").getDocuments { (querySnapshot, error) in
-//                 for acc in querySnapshot!.documents{
-//                     if (acc.documentID == self.mail){
-//                        self.firstNameLabel.text  = "ADMIN"
-//                        self.lastNameLabel.textColor = #colorLiteral(red: 0.9487857223, green: 0.240226537, blue: 0.1816714108, alpha: 1)
-//                        self.lastNameLabel.text = "nil"
-//                        self.idLabel.textColor = #colorLiteral(red: 0.9487857223, green: 0.240226537, blue: 0.1816714108, alpha: 1)
-//                        self.idLabel.text = "nil"
-//                        self.phoneLabel.textColor = #colorLiteral(red: 0.9487857223, green: 0.240226537, blue: 0.1816714108, alpha: 1)
-//                        self.phoneLabel.text = "nil"
-//                        self.emailLabel.text = self.mail
-//                        self.editButton.alpha = 0
-//                     }
-//                     else {
-//                          guard let uid = Auth.auth().currentUser?.uid else { return }
-//                        self.db.collection("user").whereField("uid", isEqualTo: uid).getDocuments { (snapshot, err) in
-//                                if let err = err {
-//                                    print(err.localizedDescription)
-//                                }
-//                                else {
-//                                    for document in (snapshot?.documents)! {
-//                                        if let firstName = document.data()["firstName"] as? String {
-//                                            self.firstNameLabel.text = firstName
-//                                        }
-//                                        if let lastName = document.data()["lastName"] as? String {
-//                                            self.lastNameLabel.text = lastName
-//                                        }
-//                                        if let phone = document.data()["phone"] as? String {
-//                                            self.phoneLabel.text = phone
-//                                        }
-//                                        if let email = document.data()["email"] as? String {
-//                                            self.emailLabel.text = email
-//                                        }
-//                                        if let ID = document.data()["ID"] as? String {
-//                                            self.idLabel.text = ID                }
-//                                        }
-//                                    }
-//                                }
-//                     }
-//            }
-//        }
-//    }
-//
+
    
     func setLabel(){
         print(fName)

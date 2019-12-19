@@ -11,5 +11,5 @@ target 'ClubManager' do
 	pod 'Firebase/Core'
 	pod 'Firebase/Firestore'
 	pod 'SCLAlertView'
-	pod 'RealmSwift'
+	
 end

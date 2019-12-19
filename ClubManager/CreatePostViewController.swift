@@ -11,6 +11,10 @@ import SCLAlertView
 import FirebaseAuth
 import Firebase
 
+
+
+
+
 class CreatePostViewController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var contentTextView: UITextView!
@@ -55,18 +59,18 @@ class CreatePostViewController: UIViewController {
     }
    
     
-    @IBAction func cancelTapped(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-            
-    }
-    
+
     @IBAction func postTapped(_ sender: Any) {
         if (titleTextField.text != "" || addressTextField.text != "" || contentTextView.text != ""){
+        let today = Date()
+        let formatter3 = DateFormatter()
+        formatter3.dateFormat = "HH:mm E, d MMM y"
+        let timePost = formatter3.string(from: today)
         let time = timePicked
         let title = titleTextField.text
         let address = addressTextField.text
         let content = contentTextView.text
-        db.collection("post").document(title!).setData(["title": title, "address": address ,"time": time, "content": content])  {(error) in
+            db.collection("post").document(title!).setData(["title": title, "address": address ,"time": time, "content": content, "timePost": timePost])  {(error) in
                 let alert = SCLAlertView()
                 alert.showSuccess("", subTitle:  "POSTED!")
             self.titleTextField.text = ""
@@ -81,6 +85,25 @@ class CreatePostViewController: UIViewController {
         
        
     }
+    
+//    func getServerTimer(completion:@escaping (Date?)->String {
+//        getServerTimer { (date) in
+//                let dFormatter = DateFormatter()
+//                dFormatter.dateStyle = .long
+//                dFormatter.timeStyle = .long
+//                dFormatter.timeZone = TimeZone(abbreviation: "GMT")
+//                if let date = date {
+//                    let dateGet = dFormatter.string(from: date)
+//                    completion(date)
+//                    print("Formatted Time : \(dateGet)")
+//                } else {
+//                    completion(nil)
+//                }
+//        }
+//        return dateGe
+//
+//    }
+
     /*
     // MARK: - Navigation
 

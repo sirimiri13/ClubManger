@@ -26,6 +26,7 @@
 		2D80721B239610BC007F4083 /* FundsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D80721A239610BC007F4083 /* FundsViewController.swift */; };
 		2D80721D239610CA007F4083 /* CreateFundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D80721C239610CA007F4083 /* CreateFundViewController.swift */; };
 		2D872810239FC5C6001C149E /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D87280F239FC5C6001C149E /* Utilities.swift */; };
+		2D971A6023AA75DB000A79C2 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D971A5F23AA75DA000A79C2 /* PostViewController.swift */; };
 		2DA1DDED23A4E5F700EC685A /* CreateNewClubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA1DDEC23A4E5F700EC685A /* CreateNewClubViewController.swift */; };
 		2DB4D9272396150800EEBD97 /* MemberTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB4D9262396150800EEBD97 /* MemberTableViewController.swift */; };
 		2DB4D9292396162800EEBD97 /* AttendanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB4D9282396162800EEBD97 /* AttendanceViewController.swift */; };
@@ -54,6 +55,7 @@
 		2D80721A239610BC007F4083 /* FundsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundsViewController.swift; sourceTree = "<group>"; };
 		2D80721C239610CA007F4083 /* CreateFundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFundViewController.swift; sourceTree = "<group>"; };
 		2D87280F239FC5C6001C149E /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		2D971A5F23AA75DA000A79C2 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		2DA1DDEC23A4E5F700EC685A /* CreateNewClubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewClubViewController.swift; sourceTree = "<group>"; };
 		2DB4D9262396150800EEBD97 /* MemberTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberTableViewController.swift; sourceTree = "<group>"; };
 		2DB4D9282396162800EEBD97 /* AttendanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceViewController.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				2D742673239A38EA0074DC00 /* Constants.swift */,
 				2D87280F239FC5C6001C149E /* Utilities.swift */,
 				2DA1DDEC23A4E5F700EC685A /* CreateNewClubViewController.swift */,
+				2D971A5F23AA75DA000A79C2 /* PostViewController.swift */,
 			);
 			path = ClubManager;
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 				2D74266A239962800074DC00 /* MainViewController.swift in Sources */,
 				2D80720F239605C2007F4083 /* CreatePostViewController.swift in Sources */,
 				2D74266C239962AF0074DC00 /* SignUpViewController.swift in Sources */,
+				2D971A6023AA75DB000A79C2 /* PostViewController.swift in Sources */,
 				2D80721B239610BC007F4083 /* FundsViewController.swift in Sources */,
 				2D8071FD239602EC007F4083 /* SceneDelegate.swift in Sources */,
 				2D74266E239962BC0074DC00 /* LoginViewController.swift in Sources */,
