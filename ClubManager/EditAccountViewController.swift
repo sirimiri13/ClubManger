@@ -26,9 +26,12 @@ class EditAccountViewController: UIViewController {
         super.viewDidLoad()
         setupElement()
         setTextField()
+        self.HiddenKeyBoard()
         // Do any additional setup after loading the view.
     }
-    
+    @objc func dissmissKeyboard() {
+               view.endEditing(true)
+           }
     
     func setupElement(){
         Utilities.styleHollowButton(backButton)
@@ -105,4 +108,14 @@ class EditAccountViewController: UIViewController {
            view.window?.makeKeyAndVisible()
        }
 
+}
+extension EditAccountViewController{
+    func HiddenKeyBoard(){
+        
+        let Tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(textDismissKeyboard))
+        view.addGestureRecognizer(Tap)
+    }
+    @objc func textDismissKeyboard(){
+        view.endEditing(true)
+    }
 }

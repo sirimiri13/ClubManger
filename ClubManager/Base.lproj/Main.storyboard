@@ -378,15 +378,22 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="abb-Q4-XgQ">
-                                <rect key="frame" x="132" y="711" width="150" height="60"/>
+                                <rect key="frame" x="132" y="721" width="150" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Back"/>
                                 <connections>
                                     <segue destination="tiS-qs-bkv" kind="presentation" modalPresentationStyle="fullScreen" id="QY9-lA-88c"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="error" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1co-BI-8Pr">
+                                <rect key="frame" x="20" y="560" width="369" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PZJ-g5-YvR">
-                                <rect key="frame" x="30" y="600" width="150" height="60"/>
+                                <rect key="frame" x="30" y="610" width="150" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Collect"/>
                                 <connections>
@@ -394,7 +401,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dl1-Zz-Ymp">
-                                <rect key="frame" x="237" y="600" width="150" height="60"/>
+                                <rect key="frame" x="237" y="610" width="150" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Pay"/>
                                 <connections>
@@ -410,12 +417,13 @@
                         <outlet property="backButton" destination="abb-Q4-XgQ" id="2GX-2i-1xL"/>
                         <outlet property="collectButton" destination="PZJ-g5-YvR" id="mCa-Cm-mKt"/>
                         <outlet property="contentFund" destination="yEB-Ug-D1j" id="qbK-Ne-cWe"/>
+                        <outlet property="errorLabel" destination="1co-BI-8Pr" id="3Hd-IT-Yla"/>
                         <outlet property="payButton" destination="dl1-Zz-Ymp" id="ubc-ZT-FFL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sw4-Wx-axv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3400" y="-1280"/>
+            <point key="canvasLocation" x="3400.0000000000005" y="-1280.3571428571429"/>
         </scene>
         <!--Account View Controller-->
         <scene sceneID="47O-aV-IPr">
@@ -1063,7 +1071,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VvN-GT-Y4b">
-                                <rect key="frame" x="132" y="689" width="150" height="60"/>
+                                <rect key="frame" x="132" y="705" width="150" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Post"/>
                                 <connections>
@@ -1071,7 +1079,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ohI-GR-mT8">
-                                <rect key="frame" x="132" y="777" width="150" height="60"/>
+                                <rect key="frame" x="132" y="793" width="150" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Back"/>
                                 <connections>
@@ -1089,6 +1097,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="err" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="maG-Am-ZM7">
+                                <rect key="frame" x="27" y="671" width="350" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="PN0-JZ-IKS"/>
@@ -1097,6 +1112,7 @@
                         <outlet property="addressTextField" destination="TTW-iL-cnB" id="ArT-1j-yjd"/>
                         <outlet property="backButton" destination="ohI-GR-mT8" id="3qI-AR-iID"/>
                         <outlet property="contentTextView" destination="g7Y-cg-xm3" id="p68-xv-Ywn"/>
+                        <outlet property="errorLabel" destination="maG-Am-ZM7" id="Mi1-VO-Zeq"/>
                         <outlet property="postButton" destination="VvN-GT-Y4b" id="Aca-YK-iX6"/>
                         <outlet property="timePicker" destination="jJY-Ok-Oku" id="d7F-rh-jAv"/>
                         <outlet property="titleTextField" destination="zoh-UU-CiK" id="ltO-1i-k5m"/>
@@ -1216,13 +1232,13 @@
                                 <rect key="frame" x="20" y="466" width="374" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XX8-Xb-AOb">
                                 <rect key="frame" x="20" y="551" width="374" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L8f-Qi-kX0">
                                 <rect key="frame" x="132" y="748" width="150" height="50"/>
@@ -1600,6 +1616,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="m77-2b-FP2"/>
         <segue reference="shu-y6-9gt"/>
-        <segue reference="5ye-Od-qVW"/>
+        <segue reference="4wH-UB-Lfr"/>
     </inferredMetricsTieBreakers>
 </document>

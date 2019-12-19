@@ -19,6 +19,7 @@ class CreatePostViewController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var contentTextView: UITextView!
   
+    @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var timePicker: UIDatePicker!
     
     @IBOutlet weak var addressTextField: UITextField!
@@ -30,17 +31,21 @@ class CreatePostViewController: UIViewController {
     var timePicked : String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.HiddenKeyBoard()
        setUpElement()
         // Do any additional setup after loading the view.
         timePicker.addTarget(self, action: #selector(CreatePostViewController.dataPickerChanged(_:)), for: .valueChanged)
     }
-    
+    @objc func dissmissKeyboard() {
+               view.endEditing(true)
+           }
     func setUpElement(){
         Utilities.styleTextField(titleTextField)
         Utilities.styleTextField(addressTextField)
         contentTextView.layer.borderWidth = 1
         Utilities.styleFilledButton(postButton)
         Utilities.styleHollowButton(backButton)
+        errorLabel.alpha = 0
     }
     
     /*@objc func dateChanged(birthdayPicker: UIDatePicker){
@@ -61,62 +66,54 @@ class CreatePostViewController: UIViewController {
     
 
     @IBAction func postTapped(_ sender: Any) {
-        if (titleTextField.text != "" || addressTextField.text != "" || contentTextView.text != ""){
+        let check = checkComplete()
+        if check == true {
         let today = Date()
-        let formatter3 = DateFormatter()
-        formatter3.dateFormat = "HH:mm E, d MMM y"
-        let timePost = formatter3.string(from: today)
-        let time = timePicked
-        let title = titleTextField.text
-        let address = addressTextField.text
-        let content = contentTextView.text
-            db.collection("post").document(title!).setData(["title": title, "address": address ,"time": time, "content": content, "timePost": timePost])  {(error) in
-                let alert = SCLAlertView()
-                alert.showSuccess("", subTitle:  "POSTED!")
-            self.titleTextField.text = ""
-            self.addressTextField.text = ""
-            self.contentTextView.text = ""
-            }
+               let formatter3 = DateFormatter()
+               formatter3.dateFormat = "HH:mm E, d MMM y"
+               let timePost = formatter3.string(from: today)
+               let time = timePicked
+               let title = titleTextField.text
+               let address = addressTextField.text
+               let content = contentTextView.text
+                   db.collection("post").document(title!).setData(["title": title, "address": address ,"time": time, "content": content, "timePost": timePost])  {(error) in
+                       let alert = SCLAlertView()
+                       alert.showSuccess("", subTitle:  "POSTED!")
+                   self.titleTextField.text = ""
+                   self.addressTextField.text = ""
+                   self.contentTextView.text = ""
+                    self.errorLabel.alpha = 0
+                   }
+               }
+               
+        }
+    
+    func checkComplete()->Bool{
+        if (titleTextField.text == "" || addressTextField.text == ""  || contentTextView.text == ""){
+            errorLabel.alpha = 1
+            errorLabel.text = "Please complete info"
+            return false
         }
         else {
-            let alert = SCLAlertView()
-            alert.showWarning("", subTitle: "Please complete info")
+            return true
         }
-        
-       
-    }
     
-//    func getServerTimer(completion:@escaping (Date?)->String {
-//        getServerTimer { (date) in
-//                let dFormatter = DateFormatter()
-//                dFormatter.dateStyle = .long
-//                dFormatter.timeStyle = .long
-//                dFormatter.timeZone = TimeZone(abbreviation: "GMT")
-//                if let date = date {
-//                    let dateGet = dFormatter.string(from: date)
-//                    completion(date)
-//                    print("Formatted Time : \(dateGet)")
-//                } else {
-//                    completion(nil)
-//                }
-//        }
-//        return dateGe
-//
-//    }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
     }
-    */
     func transitionHome(){
            let mainView = storyboard?.instantiateViewController(identifier: Constants.StoryBoard.postTableView) as? PostTableViewController
            view.window?.rootViewController = mainView
            view.window?.makeKeyAndVisible()
        }
 
+}
+
+extension CreatePostViewController{
+    func HiddenKeyBoard(){
+        
+        let Tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(textDismissKeyboard))
+        view.addGestureRecognizer(Tap)
+    }
+    @objc func textDismissKeyboard(){
+        view.endEditing(true)
+    }
 }

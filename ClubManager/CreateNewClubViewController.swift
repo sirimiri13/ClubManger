@@ -23,8 +23,12 @@ class CreateNewClubViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpElement()
+        self.HiddenKeyBoard()
         // Do any additional setup after loading the view.
     }
+    @objc func dissmissKeyboard() {
+               view.endEditing(true)
+           }
     
     func setUpElement(){
         Utilities.styleTextField(newClubTextField)
@@ -98,4 +102,14 @@ class CreateNewClubViewController: UIViewController {
            view.window?.rootViewController = mainView
            view.window?.makeKeyAndVisible()
        }
+}
+extension CreateNewClubViewController{
+    func HiddenKeyBoard(){
+        
+        let Tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(textDismissKeyboard))
+        view.addGestureRecognizer(Tap)
+    }
+    @objc func textDismissKeyboard(){
+        view.endEditing(true)
+    }
 }

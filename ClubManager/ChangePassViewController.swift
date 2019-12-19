@@ -22,6 +22,7 @@ class ChangePassViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+          self.HiddenKeyBoard()
         setUpElement()
         let user = Auth.auth().currentUser?.email
         db.collection("user").getDocuments { (querySnapshot, error) in
@@ -37,6 +38,9 @@ class ChangePassViewController: UIViewController {
         
         print(collect)
     }
+    @objc func dissmissKeyboard() {
+               view.endEditing(true)
+           }
         // Do any additional setup after loading the view.
     func setUpElement(){
         Utilities.styleFilledButton(saveButton)
@@ -92,44 +96,18 @@ class ChangePassViewController: UIViewController {
                 }
                 
             }
-       // }
-//            else {
-//            errorLabel.text = "Current password is wrong"
-//            errorLabel.alpha = 1
-//                }
+ 
     }
 
-//    func checkCollect(user: String) -> String{
-//        var collect : String = ""
-//        db.collection("user").getDocuments { (querySnapshot, error) in
-//            for acc in querySnapshot!.documents{
-//                if (acc.documentID == user){
-//                    collect = "user"
-//                }
-//            }
-//
-//        }
-//        db.collection("admin").getDocuments { (querySnapshot, error) in
-//            for acc in querySnapshot!.documents{
-//                if (acc.documentID == user){
-//                           collect = "admin"
-//                       }
-//            }
-//
-//        }
-//        return collect
-//    }
-//
-    
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+}
+extension ChangePassViewController{
+    func HiddenKeyBoard(){
+        
+        let Tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(textDismissKeyboard))
+        view.addGestureRecognizer(Tap)
     }
-    */
-
-
+    @objc func textDismissKeyboard(){
+        view.endEditing(true)
+    }
 }

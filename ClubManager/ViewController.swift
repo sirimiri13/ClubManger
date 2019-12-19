@@ -136,20 +136,23 @@ class ViewController: UIViewController {
                     Auth.auth().signIn(withEmail: acc, password: pass) { (result,error) in
                         Auth.auth().currentUser?.delete(completion: { (err) in
                             print("delect \(acc)")
-                            self.deleteData(collection: collection)
-                            
+                           
                         })
                     }
+                  
                 }
             }
         
         }
+        self.deleteData(collection: collection)
+                                                     
     }
     
     func deleteAccount(){
         deleteAccountCollection(collection: "user")
         deleteAccountCollection(collection: "admin")
         deleteData(collection: "post")
+        deleteData(collection: "fund")
     }
     
     func setUpElement(){

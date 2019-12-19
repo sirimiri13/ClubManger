@@ -21,9 +21,13 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpElement()
+          self.HiddenKeyBoard()
         // Do any additional setup after loading the view.
        // view.backgroundColor = .blue
     }
+    @objc func dissmissKeyboard() {
+               view.endEditing(true)
+           }
     
     func setUpElement(){
         emailTextField.backgroundColor = .white
@@ -73,5 +77,15 @@ class LoginViewController: UIViewController {
         let mainView = storyboard?.instantiateViewController(identifier: Constants.StoryBoard.mainView ) as? MainViewController
         view.window?.rootViewController = mainView
         view.window?.makeKeyAndVisible()
+    }
+}
+extension LoginViewController{
+    func HiddenKeyBoard(){
+        
+        let Tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(textDismissKeyboard))
+        view.addGestureRecognizer(Tap)
+    }
+    @objc func textDismissKeyboard(){
+        view.endEditing(true)
     }
 }

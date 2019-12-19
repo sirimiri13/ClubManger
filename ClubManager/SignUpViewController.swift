@@ -28,7 +28,7 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpElement()
-        
+          self.HiddenKeyBoard()
         let uid = Auth.auth().currentUser?.uid
         db.collection("admin").whereField("uid", isEqualTo: uid).getDocuments { (snapshot, err) in
         if let err = err {
@@ -43,7 +43,9 @@ class SignUpViewController: UIViewController {
             }
         }
     }
-    
+    @objc func dissmissKeyboard() {
+               view.endEditing(true)
+           }
     func setUpElement(){
         errorLabel.alpha = 0
         Utilities.styleTextField(firstNameTextField)
@@ -95,6 +97,7 @@ class SignUpViewController: UIViewController {
                         self.IDTextField.text = ""
                         self.phoneTextField.text = ""
                         self.emailTextField.text = ""
+                        self.errorLabel.alpha = 0
                         try! Auth.auth().signOut()
                         try! Auth.auth().signIn(withEmail: self.acc!, password: self.passUser){ (result,error) in
                         }
@@ -115,5 +118,16 @@ class SignUpViewController: UIViewController {
         let mainView = storyboard?.instantiateViewController(identifier: Constants.StoryBoard.mainView) as? MainViewController
         view.window?.rootViewController = mainView
         view.window?.makeKeyAndVisible()
+    }
+}
+
+extension SignUpViewController{
+    func HiddenKeyBoard(){
+        
+        let Tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(textDismissKeyboard))
+        view.addGestureRecognizer(Tap)
+    }
+    @objc func textDismissKeyboard(){
+        view.endEditing(true)
     }
 }
