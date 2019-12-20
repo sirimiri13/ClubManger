@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>236241031218-1trj7kg0cd6rdgpboaf9sds13pp5kmr1.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.236241031218-1trj7kg0cd6rdgpboaf9sds13pp5kmr1</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAjWq3CCFDOQGKRt9Z-B8mrIrPDNA--DVc</string>
+	<key>GCM_SENDER_ID</key>
+	<string>236241031218</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>HuongLam.ClubManager</string>
+	<key>PROJECT_ID</key>
+	<string>loginclubmanager</string>
+	<key>STORAGE_BUCKET</key>
+	<string>loginclubmanager.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:236241031218:ios:5b0095a3a04db6e6ddac2b</string>
+	<key>DATABASE_URL</key>
+	<string>https://loginclubmanager.firebaseio.com</string>
+</dict>
+</plist>
