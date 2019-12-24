@@ -17,6 +17,7 @@ struct Posts {
     var time : String
     var address : String
     var content: String
+    var timePost: String
 }
     
 
@@ -73,6 +74,7 @@ class PostTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellPost", for: indexPath)
+        
         cell.textLabel!.text = listPost[indexPath.row].title
         return cell
     }
@@ -97,15 +99,36 @@ class PostTableViewController: UITableViewController {
                 let tempTime = user.data()["time"]
                 let tempAddress = user.data()["address"]
                 let tempContent = user.data()["content"]
-                let newPost = Posts(title: tempTitle as! String, time: tempTime as! String, address: tempAddress as! String, content: tempContent as! String)
+                let timePost = user.data()["timePost"]
+                let newPost = Posts(title: tempTitle as! String, time: tempTime as! String, address: tempAddress as! String, content: tempContent as! String, timePost: timePost as! String)
                 print(newPost)
                 self.listPost.append(newPost)
+                for i in 0..<self.listPost.count - 1 {
+                    for j in 1..<self.listPost.count {
+                        var dateStringI = self.listPost[i].timePost
+                        var dateStringJ = self.listPost[j].timePost
+                        var dateI = self.stringToDate(string: dateStringI)
+                        var dateJ = self.stringToDate(string: dateStringJ)
+                        if (dateI < dateJ){
+                            self.listPost.swapAt(i, j)
+                        }
+                    }
+                }
+    
+        
+                }
                // print(self.listPost)
                 self.tableView.reloadData()
             }
         }
 
+    func stringToDate(string: String) -> Date{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm E, d MMM y"
+        let date = dateFormatter.date(from: string)
+        return date!
     }
+    
     func transitionHome(){
            let mainView = storyboard?.instantiateViewController(identifier: Constants.StoryBoard.createPostView) as? CreatePostViewController
            view.window?.rootViewController = mainView

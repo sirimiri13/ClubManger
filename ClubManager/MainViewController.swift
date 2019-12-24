@@ -131,7 +131,7 @@ class MainViewController: UIViewController {
     
     func addFund(alert: UIAlertAction){
         var amount = fundTextField?.text
-        db.collection("fund").document("total").setData(["reason" : "", "amount" : amount ]) {(err) in
+        db.collection("fund").document("total").setData(["reason" : "", "amount" : amount,"timePost": "" ]) {(err) in
             let anotherAlert = SCLAlertView()
             anotherAlert.showSuccess("", subTitle: "The fund is created")
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "FundsViewController") as! FundsViewController

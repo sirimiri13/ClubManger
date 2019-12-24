@@ -6,10 +6,12 @@ target 'ClubManager' do
   use_frameworks!
 
   # Pods for ClubManager
+
 	pod 'Firebase/Analytics'
 	pod 'Firebase/Auth'
 	pod 'Firebase/Core'
 	pod 'Firebase/Firestore'
 	pod 'SCLAlertView'
 	
+
 end

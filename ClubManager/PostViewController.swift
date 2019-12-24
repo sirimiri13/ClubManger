@@ -15,6 +15,7 @@ class PostViewController: UIViewController {
     var contentPost: String = ""
     var timePost: String = ""
     var addressPost: String = ""
+   
     
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!

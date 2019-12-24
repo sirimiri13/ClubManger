@@ -100,11 +100,15 @@ class CreateFundViewController: UIViewController {
     
     
     func setFund(choice: String){
+        let today = Date()
+        let formatter3 = DateFormatter()
+        formatter3.dateFormat = "HH:mm E, d MMM y"
+        let timePost = formatter3.string(from: today)
         let document = contentFund.text
         let amount = amountTextField.text
         if (choice == "collect"){
             let collectAmount = "+" + amount!
-            db.collection("fund").document(document!).setData(["amount": collectAmount, "reason": document]) {(err) in
+            db.collection("fund").document(document!).setData(["amount": collectAmount, "reason": document, "timePost": timePost]) {(err) in
                 let alert = SCLAlertView()
                 self.amountTextField.text = ""
                 self.contentFund.text = ""
@@ -114,7 +118,7 @@ class CreateFundViewController: UIViewController {
         }
         else{
             let payAmount = "-" + amount!
-            db.collection("fund").document(document!).setData(["amount": payAmount, "reason": document]) {(err) in
+            db.collection("fund").document(document!).setData(["amount": payAmount, "reason": document, "timePost" : timePost]) {(err) in
                 let alert = SCLAlertView()
                 self.amountTextField.text = ""
                 self.contentFund.text = ""

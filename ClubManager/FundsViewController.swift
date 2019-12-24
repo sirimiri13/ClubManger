@@ -14,6 +14,7 @@ import SCLAlertView
 struct Funds{
     var amount : String
     var reason: String
+    var timePost: String
 }
 
 class cellFund: UITableViewCell {
@@ -74,8 +75,21 @@ class FundsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 if (fund.documentID != "total"){
                     var amount = fund.data()["amount"]
                     var reason = fund.data()["reason"]
-                    let newFund = Funds(amount: amount as! String, reason: reason as! String)
+                    var timePost = fund.data()["timePost"]
+                    let newFund = Funds(amount: amount as! String, reason: reason as! String, timePost: timePost as! String)
                     self.listFund.append(newFund)
+                    for i in 0..<self.listFund.count - 1 {
+                                    for j in 1..<self.listFund.count {
+                                        var dateStringI = self.listFund[i].timePost
+                                        var dateStringJ = self.listFund[j].timePost
+                                        var dateI = self.stringToDate(string: dateStringI)
+                                        var dateJ = self.stringToDate(string: dateStringJ)
+                                        if (dateI < dateJ){
+                                            self.listFund.swapAt(i, j)
+                                        }
+                                    }
+                                }
+                    
                     self.fundTableView.reloadData()
                 }
                 
@@ -103,4 +117,11 @@ class FundsViewController: UIViewController, UITableViewDelegate, UITableViewDat
           view.window?.rootViewController = mainView
           view.window?.makeKeyAndVisible()
       }
+    
+    func stringToDate(string: String) -> Date{
+           let dateFormatter = DateFormatter()
+           dateFormatter.dateFormat = "HH:mm E, d MMM y"
+           let date = dateFormatter.date(from: string)
+           return date!
+       }
 }
