@@ -50,6 +50,15 @@ class MainViewController: UIViewController {
             self.present(vc, animated: true, completion:  nil)
     }
 }
+    @IBAction func postTapped(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "PostTableViewController") as! PostTableViewController
+        vc.forwardView = "Post"
+        let navController = UINavigationController(rootViewController: vc)
+        navController.modalPresentationStyle = .fullScreen
+        self.present(navController, animated: false)
+    }
+    
+    
     @IBAction func accountTapped(_ sender: Any) {
         let user = Auth.auth().currentUser?.email
         let vc = storyboard?.instantiateViewController(withIdentifier: "AccountViewController") as! AccountViewController
@@ -141,15 +150,23 @@ class MainViewController: UIViewController {
            // self.transitionHome()
         }
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    @IBAction func albumTapped(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "AlbumTableViewController") as! AlbumTableViewController
+        let navController = UINavigationController(rootViewController: vc)
+        navController.modalPresentationStyle = .fullScreen
+        self.present(navController,animated: false)
+        
     }
-    */
+    
+    
+    @IBAction func attendanceTapped(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "AttendanceTableViewController") as! AttendanceTableViewController
+        let navController = UINavigationController(rootViewController: vc)
+               navController.modalPresentationStyle = .fullScreen
+               self.present(navController,animated: false)
+    }
+    
     func transitionHome(){
         let mainView = storyboard?.instantiateViewController(identifier: Constants.StoryBoard.fundView) as? FundsViewController
         view.window?.rootViewController = mainView

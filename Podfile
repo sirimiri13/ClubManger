@@ -12,6 +12,7 @@ target 'ClubManager' do
 	pod 'Firebase/Core'
 	pod 'Firebase/Firestore'
 	pod 'SCLAlertView'
-	
+	pod 'Firebase/Storage'
+	pod "BSImagePicker", "~> 2.8"
 
 end

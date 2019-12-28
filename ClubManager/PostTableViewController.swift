@@ -19,12 +19,12 @@ struct Posts {
     var content: String
     var timePost: String
 }
-    
+
 
 
 class PostTableViewController: UITableViewController {
    // var arrayTime : [Date] = []
-  
+    var forwardView : String = ""
     var listPost : [Posts] = []
     var collect = ""
   //  var post = Firestore.firestore().collection("post")

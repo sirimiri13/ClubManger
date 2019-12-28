@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D505F2923B4BDCF00FDC9AB /* AttendanceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D505F2823B4BDCF00FDC9AB /* AttendanceTableViewController.swift */; };
 		2D74266A239962800074DC00 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D742669239962800074DC00 /* MainViewController.swift */; };
 		2D74266C239962AF0074DC00 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D74266B239962AF0074DC00 /* SignUpViewController.swift */; };
 		2D74266E239962BC0074DC00 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D74266D239962BC0074DC00 /* LoginViewController.swift */; };
@@ -28,12 +29,15 @@
 		2D872810239FC5C6001C149E /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D87280F239FC5C6001C149E /* Utilities.swift */; };
 		2D971A6023AA75DB000A79C2 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D971A5F23AA75DA000A79C2 /* PostViewController.swift */; };
 		2DA1DDED23A4E5F700EC685A /* CreateNewClubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA1DDEC23A4E5F700EC685A /* CreateNewClubViewController.swift */; };
+		2DA6D2C823B1F53E0049A74E /* AlbumTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA6D2C723B1F53E0049A74E /* AlbumTableViewController.swift */; };
+		2DA6D2CA23B1FC690049A74E /* AlbumCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA6D2C923B1FC690049A74E /* AlbumCollectionViewController.swift */; };
 		2DB4D9272396150800EEBD97 /* MemberTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB4D9262396150800EEBD97 /* MemberTableViewController.swift */; };
 		2DB4D9292396162800EEBD97 /* AttendanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB4D9282396162800EEBD97 /* AttendanceViewController.swift */; };
 		DAE5620A8408DE4C162EC642 /* Pods_ClubManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD4547C81B7318EB093F6E5B /* Pods_ClubManager.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D505F2823B4BDCF00FDC9AB /* AttendanceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceTableViewController.swift; sourceTree = "<group>"; };
 		2D742669239962800074DC00 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		2D74266B239962AF0074DC00 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		2D74266D239962BC0074DC00 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -57,6 +61,8 @@
 		2D87280F239FC5C6001C149E /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		2D971A5F23AA75DA000A79C2 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		2DA1DDEC23A4E5F700EC685A /* CreateNewClubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewClubViewController.swift; sourceTree = "<group>"; };
+		2DA6D2C723B1F53E0049A74E /* AlbumTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumTableViewController.swift; sourceTree = "<group>"; };
+		2DA6D2C923B1FC690049A74E /* AlbumCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCollectionViewController.swift; sourceTree = "<group>"; };
 		2DB4D9262396150800EEBD97 /* MemberTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberTableViewController.swift; sourceTree = "<group>"; };
 		2DB4D9282396162800EEBD97 /* AttendanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceViewController.swift; sourceTree = "<group>"; };
 		7917284574D2C2E39D2ED519 /* Pods-ClubManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClubManager.debug.xcconfig"; path = "Target Support Files/Pods-ClubManager/Pods-ClubManager.debug.xcconfig"; sourceTree = "<group>"; };
@@ -121,6 +127,9 @@
 				2D87280F239FC5C6001C149E /* Utilities.swift */,
 				2DA1DDEC23A4E5F700EC685A /* CreateNewClubViewController.swift */,
 				2D971A5F23AA75DA000A79C2 /* PostViewController.swift */,
+				2DA6D2C723B1F53E0049A74E /* AlbumTableViewController.swift */,
+				2DA6D2C923B1FC690049A74E /* AlbumCollectionViewController.swift */,
+				2D505F2823B4BDCF00FDC9AB /* AttendanceTableViewController.swift */,
 			);
 			path = ClubManager;
 			sourceTree = "<group>";
@@ -268,13 +277,16 @@
 				2D872810239FC5C6001C149E /* Utilities.swift in Sources */,
 				2D8072172396109C007F4083 /* EditAccountViewController.swift in Sources */,
 				2D74266A239962800074DC00 /* MainViewController.swift in Sources */,
+				2D505F2923B4BDCF00FDC9AB /* AttendanceTableViewController.swift in Sources */,
 				2D80720F239605C2007F4083 /* CreatePostViewController.swift in Sources */,
 				2D74266C239962AF0074DC00 /* SignUpViewController.swift in Sources */,
 				2D971A6023AA75DB000A79C2 /* PostViewController.swift in Sources */,
 				2D80721B239610BC007F4083 /* FundsViewController.swift in Sources */,
 				2D8071FD239602EC007F4083 /* SceneDelegate.swift in Sources */,
+				2DA6D2CA23B1FC690049A74E /* AlbumCollectionViewController.swift in Sources */,
 				2D74266E239962BC0074DC00 /* LoginViewController.swift in Sources */,
 				2DB4D9272396150800EEBD97 /* MemberTableViewController.swift in Sources */,
+				2DA6D2C823B1F53E0049A74E /* AlbumTableViewController.swift in Sources */,
 				2D80721D239610CA007F4083 /* CreateFundViewController.swift in Sources */,
 				2D742674239A38EA0074DC00 /* Constants.swift in Sources */,
 			);
