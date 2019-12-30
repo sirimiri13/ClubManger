@@ -70,7 +70,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2eY-Rl-YZV">
-                                <rect key="frame" x="20" y="282" width="374" height="475"/>
+                                <rect key="frame" x="20" y="266" width="374" height="483"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
@@ -117,7 +117,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wc8-BH-yL4">
-                                <rect key="frame" x="125" y="778" width="150" height="50"/>
+                                <rect key="frame" x="125" y="768" width="150" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Done"/>
                                 <connections>
@@ -132,6 +132,7 @@
                         <outlet property="checkButton" destination="CJS-JH-jbF" id="aoI-Wg-vac"/>
                         <outlet property="doneButton" destination="wc8-BH-yL4" id="YRI-Ws-UrI"/>
                         <outlet property="eventNameLabel" destination="aFM-JI-51K" id="f8X-rE-cAs"/>
+                        <outlet property="idLabel" destination="enz-Kx-hhe" id="yXq-2T-Rjj"/>
                         <outlet property="idTextField" destination="xdo-gk-3ro" id="5a2-qj-yaK"/>
                         <outlet property="tableAttendaceView" destination="2eY-Rl-YZV" id="T26-1z-CtV"/>
                     </connections>
@@ -755,7 +756,7 @@
             </objects>
             <point key="canvasLocation" x="-3197" y="-560"/>
         </scene>
-        <!--Attendance Table View Controller-->
+        <!--Attendance-->
         <scene sceneID="0rg-w4-1VM">
             <objects>
                 <tableViewController storyboardIdentifier="AttendanceTableViewController" id="PMd-ZS-RTX" customClass="AttendanceTableViewController" customModule="ClubManager" customModuleProvider="target" sceneMemberID="viewController">
@@ -778,7 +779,7 @@
                             <outlet property="delegate" destination="PMd-ZS-RTX" id="vd4-dI-lad"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="MQX-Di-HRb">
+                    <navigationItem key="navigationItem" title="Attendance" id="MQX-Di-HRb">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Iwy-dO-lf7">
                             <connections>
                                 <segue destination="BYZ-38-t0r" kind="presentation" modalPresentationStyle="fullScreen" id="5DJ-p4-gfE"/>
@@ -794,6 +795,41 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eU1-Sy-YTM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-884.05797101449286" y="-610.04464285714278"/>
+        </scene>
+        <!--Your Event-->
+        <scene sceneID="Wqs-IH-oV4">
+            <objects>
+                <tableViewController storyboardIdentifier="ListAttendanceTableViewController" id="Jz2-vN-YrS" customClass="ListAttendanceTableViewController" customModule="ClubManager" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="17B-DP-g4H">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="listAttendanceCell" id="BEf-em-hHo">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BEf-em-hHo" id="oCn-ee-E7g">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Jz2-vN-YrS" id="gUx-GQ-2S8"/>
+                            <outlet property="delegate" destination="Jz2-vN-YrS" id="iIu-cg-5w8"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Your Event" id="igE-WD-kHS">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="yPg-9l-4JG">
+                            <connections>
+                                <segue destination="BYZ-38-t0r" kind="presentation" modalPresentationStyle="fullScreen" id="DZf-3Z-wsY"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rXG-Y2-vMy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-884" y="149"/>
         </scene>
         <!--Change Pass View Controller-->
         <scene sceneID="N29-ct-uJV">
@@ -1873,6 +1909,24 @@
             </objects>
             <point key="canvasLocation" x="-1794.2028985507247" y="-610.04464285714278"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="AOA-Gb-drU">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8zy-X3-ZRW" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="d0E-F8-5E4">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Jz2-vN-YrS" kind="relationship" relationship="rootViewController" id="eqk-vg-YZy"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZFo-Er-nRu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1794" y="149"/>
+        </scene>
     </scenes>
     <resources>
         <image name="attendace" width="310" height="163"/>
@@ -1886,6 +1940,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="v5Q-kk-oVY"/>
-        <segue reference="qQk-gH-09P"/>
+        <segue reference="5DJ-p4-gfE"/>
     </inferredMetricsTieBreakers>
 </document>

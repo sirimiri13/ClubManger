@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2D505F2923B4BDCF00FDC9AB /* AttendanceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D505F2823B4BDCF00FDC9AB /* AttendanceTableViewController.swift */; };
+		2D505F2C23BA1AE400FDC9AB /* ListAttendanceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D505F2B23BA1AE400FDC9AB /* ListAttendanceTableViewController.swift */; };
 		2D74266A239962800074DC00 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D742669239962800074DC00 /* MainViewController.swift */; };
 		2D74266C239962AF0074DC00 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D74266B239962AF0074DC00 /* SignUpViewController.swift */; };
 		2D74266E239962BC0074DC00 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D74266D239962BC0074DC00 /* LoginViewController.swift */; };
@@ -38,6 +39,7 @@
 
 /* Begin PBXFileReference section */
 		2D505F2823B4BDCF00FDC9AB /* AttendanceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceTableViewController.swift; sourceTree = "<group>"; };
+		2D505F2B23BA1AE400FDC9AB /* ListAttendanceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAttendanceTableViewController.swift; sourceTree = "<group>"; };
 		2D742669239962800074DC00 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		2D74266B239962AF0074DC00 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		2D74266D239962BC0074DC00 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				2DA6D2C723B1F53E0049A74E /* AlbumTableViewController.swift */,
 				2DA6D2C923B1FC690049A74E /* AlbumCollectionViewController.swift */,
 				2D505F2823B4BDCF00FDC9AB /* AttendanceTableViewController.swift */,
+				2D505F2B23BA1AE400FDC9AB /* ListAttendanceTableViewController.swift */,
 			);
 			path = ClubManager;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 				2DA6D2C823B1F53E0049A74E /* AlbumTableViewController.swift in Sources */,
 				2D80721D239610CA007F4083 /* CreateFundViewController.swift in Sources */,
 				2D742674239A38EA0074DC00 /* Constants.swift in Sources */,
+				2D505F2C23BA1AE400FDC9AB /* ListAttendanceTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

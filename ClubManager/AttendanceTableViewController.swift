@@ -14,12 +14,12 @@ import SCLAlertView
 
 class AttendanceTableViewController: UITableViewController {
     
-    var count : Int = 0
+    var count = 0
     //var ID: String = ""
     var collect : String = ""
     var eventList : [String] = []
     var memList =  [MemberAttendance]()
-    //var idList: [String] = []
+    var idList: [String] = []
     let db = Firestore.firestore()
     let mail = Auth.auth().currentUser?.email
     var idArray : [String] = []
@@ -101,21 +101,6 @@ class AttendanceTableViewController: UITableViewController {
         }
     }
         
-    
-    func getIDList(event: String) -> [String]{
-        var idList : [String] = []
-        let vc = storyboard?.instantiateViewController(withIdentifier: "AttendanceViewController") as! AttendanceViewController
-        var i = 0
-               repeat {
-                   var id = "ID" + String(i)
-                   db.collection("event").document(event).getDocument { (querySnapshot, err) in
-                       let idMemberAttendance = querySnapshot?.data()![id] as! String
-                    idList.append(idMemberAttendance)
-                        i += 1
-                }
-               } while (i <= vc.countMem)
-        return idList
-    }
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -134,13 +119,7 @@ class AttendanceTableViewController: UITableViewController {
         if (collect == "admin"){
              cell.textLabel!.text = eventList[indexPath.row]
         }
-//        else {
-//            let uid = getID()
-//            for event in eventList
-//            {
-//                getIDList(event: event)
-//            }
-//        }
+
 
         return cell
     }
@@ -148,45 +127,28 @@ class AttendanceTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let event = eventList[indexPath.row]
         print(event)
-        let vc = storyboard?.instantiateViewController(withIdentifier: "AttendanceViewController") as! AttendanceViewController
-        vc.eventName = event
-        //setInfoTable(eventName: event, count: vc.countMem)
-       // vc.memInList = memList
-        db.collection("event").document(event).getDocument { (querySnapshot, err) in
-            vc.count = querySnapshot?.data()!["count"] as! Int
-        }
-//        for i in 0...vc.count{
-//            let mem = pickMember(i: i, eventName: event)
-//            vc.memberAttendance.append(mem)
-//        }
-        
+         let vc = storyboard?.instantiateViewController(withIdentifier: "AttendanceViewController") as! AttendanceViewController
         vc.forwardView = "AttendanceTableViewController"
+        vc.eventName = event
         vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: false )
+       // let navController = UINavigationController(rootViewController: vc)
+        //navController.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: false)
     }
-
-    
-//    func pickMember(i: Int, eventName: String) -> MemberAttendance{
-//        var newMem : MemberAttendance? = nil
-//        let index = "ID" + String(i)
-//        db.collection("event").document(eventName).getDocument { (querySnapshot, err) in
-//            let idMem = querySnapshot?.data()![index] as! String
-//            self.db.collection("user").getDocuments { (querySnapshot_user, err) in
-//                for info in querySnapshot_user!.documents{
-//                    if idMem == info.data()["ID"] as! String {
-//                        let fName = info.data()["firstName"] as! String
-//                        let lName = info.data()["lastName"] as! String
-//                        let name = lName + " " + fName
-//                        newMem = MemberAttendance(name: name, id: idMem)
-//                       // memberAttendance.append(newMem)
-//                      //  self.tableAttendaceView.reloadData()
-//                    }
-//                }
+//    func getListAttendance(event: String, count: Int){
+//        //print(count)
+//        for i in 0...count {
+//            print("====\(i)")
+//        db.collection("event").document(event).getDocument { (querySnap, err) in
+//                var index = "ID" + String(i)
+//            var id = querySnap?.data()![index] as! String
+//            print("+++\(id)")
+//            self.idList.append(id)
+//            print(".......\(self.idList)")
 //            }
 //        }
-//        return newMem!
 //    }
-    
+
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

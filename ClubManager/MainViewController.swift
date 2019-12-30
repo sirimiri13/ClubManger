@@ -16,6 +16,7 @@ class MainViewController: UIViewController {
     var fundTextField : UITextField?
     let db = Firestore.firestore()
     var mail = Auth.auth().currentUser?.email
+    var id : String = ""
     @IBOutlet weak var idLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,14 +32,16 @@ class MainViewController: UIViewController {
                                 let fName = snapshot!.data()!["firstName"] as! String
                                 let lName = snapshot!.data()!["lastName"] as! String
                                 let fullName = lName + " " + fName
-                            self.idLabel.text = fullName
-                            self.idLabel.textColor = #colorLiteral(red: 0.07912478596, green: 0.09655424207, blue: 0.4037392437, alpha: 1)
+                                self.idLabel.text = fullName
+                                self.idLabel.textColor = #colorLiteral(red: 0.07912478596, green: 0.09655424207, blue: 0.4037392437, alpha: 1)
+                                self.id = snapshot?.data()!["ID"] as! String
                             
                         }
                }
            }
         
     }
+    
     }
 
     @IBAction func signOutTapped(_ sender: Any) {
@@ -161,12 +164,27 @@ class MainViewController: UIViewController {
     
     
     @IBAction func attendanceTapped(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "AttendanceTableViewController") as! AttendanceTableViewController
-        let navController = UINavigationController(rootViewController: vc)
-               navController.modalPresentationStyle = .fullScreen
-               self.present(navController,animated: false)
+       // print (self.id)
+        if (idLabel.text == "ADMIN") {
+            let vc = storyboard?.instantiateViewController(withIdentifier: "AttendanceTableViewController") as! AttendanceTableViewController
+            let navController = UINavigationController(rootViewController: vc)
+                   navController.modalPresentationStyle = .fullScreen
+                   self.present(navController,animated: false)
+        }
+        else {
+            let vc = storyboard?.instantiateViewController(withIdentifier: "ListAttendanceTableViewController") as! ListAttendanceTableViewController
+            vc.id = self.id
+            let navController = UINavigationController(rootViewController: vc)
+            navController.modalPresentationStyle = .fullScreen
+            
+            self.present(navController,animated: false)
+        }
     }
     
+    
+
+    
+   
     func transitionHome(){
         let mainView = storyboard?.instantiateViewController(identifier: Constants.StoryBoard.fundView) as? FundsViewController
         view.window?.rootViewController = mainView
