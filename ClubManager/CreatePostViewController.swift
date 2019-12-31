@@ -48,13 +48,7 @@ class CreatePostViewController: UIViewController {
         errorLabel.alpha = 0
     }
     
-    /*@objc func dateChanged(birthdayPicker: UIDatePicker){
-           let time = DateIntervalFormatter
-        time. = "MMM dd, yyyy"
-           birthdayText.text = birthdayFormatter.string(from: birthdayPicker.date)
-       }*/
-       
-    
+   
     @objc func dataPickerChanged(_ sender: UIDatePicker){
         
         let dateFormatter: DateFormatter = DateFormatter()

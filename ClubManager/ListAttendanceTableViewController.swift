@@ -31,16 +31,11 @@ class ListAttendanceTableViewController: UITableViewController {
    
     func setTable(){
         db.collection("event").getDocuments { (querySnap_event, err) in
-           // print("=== \(querySnap_event?.count)")
             for event in querySnap_event!.documents{
-                   // print("====\(event.data()["count"])")
                     self.count = event.data()["count"] as! Int
                     for i in 0..<self.count {
-                      //  print("=====\(event.documentID)")
                         let index = "ID" + String(i)
-                      //  print("===== \(index)")
                         let newID = event.data()[index] as! String
-                        //print("....\(newID)")
                         if (newID == self.id){
                             let evt = event.data()["eventName"] as! String
                             print(evt)

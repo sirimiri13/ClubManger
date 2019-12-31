@@ -14,14 +14,13 @@ import Firebase
 class AlbumTableViewController: UITableViewController {
     var newAlbumTextField = UITextField()
     let storageRef = Storage.storage().reference()
+    let db = Firestore.firestore()
+    var listAlbum : [String] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        setListAlbum()
+        tableView.reloadData()
+        
     }
 
     @IBAction func addAlbum(_ sender: Any) {
@@ -42,6 +41,8 @@ class AlbumTableViewController: UITableViewController {
     
     func createAlbumTapped(alert: UIAlertAction){
         let album = newAlbumTextField.text
+        db.collection("album").document(album!).setData(["albumName": album])
+       // db.collection("album").documemnt(album).setData(["albumName" : album])
         //let imagesRef = storageRef.child(album!)
         let vc = storyboard?.instantiateViewController(withIdentifier: "AlbumCollectionViewController") as! AlbumCollectionViewController
         vc.albumName = album!
@@ -52,28 +53,45 @@ class AlbumTableViewController: UITableViewController {
     }
     
     
+    func setListAlbum(){
+        db.collection("album").getDocuments { (querySnap, err) in
+            for album in querySnap!.documents{
+                let albumName = album.data()["albumName"] as! String
+                self.listAlbum.append(albumName)
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return listAlbum.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "listAlbumCell", for: indexPath)
+        cell.textLabel!.text = listAlbum[indexPath.row]
         return cell
     }
-    */
 
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let album = listAlbum[indexPath.row]
+        print("---\(album)")
+        let vc = storyboard?.instantiateViewController(withIdentifier: "AlbumCollectionViewController") as! AlbumCollectionViewController
+        vc.albumName = album
+        let navController = UINavigationController(rootViewController: vc)
+        navController.modalPresentationStyle = .fullScreen
+        self.present(navController, animated: false)
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

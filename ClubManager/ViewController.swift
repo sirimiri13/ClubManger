@@ -121,31 +121,34 @@ class ViewController: UIViewController {
         
     }
     func deleteAccountCollection(collection: String){
-    var acc : String = ""
-    var pass: String = ""
-    db.collection (collection).getDocuments()
-    {
-        (querySnapshot,err) in
-            if let err =  err{
-                print(err.localizedDescription)
-        }
-        else {
-                for user in querySnapshot!.documents{
-                    acc = user.documentID
-                    pass = user.data()["pass"] as! String
-                    Auth.auth().signIn(withEmail: acc, password: pass) { (result,error) in
-                        Auth.auth().currentUser?.delete(completion: { (err) in
-                            print("delect \(acc)")
-                           
-                        })
-                    }
-                  
+        var acc : String = ""
+        var pass: String = ""
+        db.collection (collection).getDocuments{ (querySnapshot, err) in
+            for user in querySnapshot!.documents{
+                acc = user.documentID
+                pass = user.data()["pass"] as! String
+                Auth.auth().signIn(withEmail: acc, password: pass) { (result,error) in
+                    Auth.auth().currentUser?.delete(completion: { (err) in
+                        print("delect \(acc)")})
                 }
             }
-        
         }
         self.deleteData(collection: collection)
-                                                     
+                                                      
+//        db.collection(collection).getDocuments { (querySnap, err) in
+//            for user in querySnap!.documents{
+//                let acc = user.data()["email"] as! String
+//                let pass = user.data()["pass"] as! String
+//                print(acc)
+//                print(pass)
+//                Auth.auth().signIn(withEmail: acc, password: pass) { (res, err) in}
+//                let currentUser = Auth.auth().currentUser
+//                print(currentUser?.email)
+//                currentUser?.delete(completion: { (err) in})
+//            }
+//        }
+//        self.deleteData(collection: collection)
+                                                
     }
     
     func deleteAccount(){
@@ -153,6 +156,8 @@ class ViewController: UIViewController {
         deleteAccountCollection(collection: "admin")
         deleteData(collection: "post")
         deleteData(collection: "fund")
+        deleteData(collection: "event")
+        
     }
     
     func setUpElement(){

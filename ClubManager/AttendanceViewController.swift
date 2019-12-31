@@ -54,9 +54,10 @@ class AttendanceViewController: UIViewController, UITableViewDelegate, UITableVi
         setUpElement()
         setEvent()
         setID()
-       // setTable()
+       //setTable()
         print("---- \(count)")
         tableAttendaceView.reloadData()
+       // test()
         // Do any additional setup after loading the view.
     }
     
@@ -157,7 +158,13 @@ class AttendanceViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     
-    
+//    func test(){
+//        var dataList: [Dictionary<String,Any>]?
+//        db.collection("event").document("test").getDocument { (snapshot, err) in
+//            dataList = snapshot!.data()!["ID"] as! [Dictionary]
+//        }
+//        print(dataList)
+//    }
 
     
     @IBAction func doneTapped(_ sender: Any) {

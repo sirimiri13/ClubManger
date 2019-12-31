@@ -10,6 +10,7 @@ import UIKit
 import Photos
 import Firebase
 import BSImagePicker
+import SCLAlertView
 
 
 //private let reuseIdentifier = "Cell"
@@ -18,27 +19,23 @@ class cellAlbum: UICollectionViewCell{
 }
 
 
-class AlbumCollectionViewController: UICollectionViewController,UIImagePickerControllerDelegate , UINavigationControllerDelegate {
+class AlbumCollectionViewController: UICollectionViewController,UIImagePickerControllerDelegate , UINavigationControllerDelegate{
 
+    
+   
+    var count = 0
+    let db = Firestore.firestore()
     var albumName : String = ""
     let storageRef = Storage.storage().reference()
     var selectAssets = [PHAsset]()
-    var listImage = [UIImage]()
+    var listImage : [UIImage] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-        storageRef.child(albumName).getData(maxSize: Int64.init()) { (Data, err) in
-           if let pic = UIImage(data: Data!) {
-            self.listImage.append(pic)
-            }
-        }
+        //setListImage()
         collectionView.reloadData()
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-       // self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
+        print(albumName)
+        
+        
     }
     
     @IBAction func openLibrary(_ sender: Any) {
@@ -53,10 +50,7 @@ class AlbumCollectionViewController: UICollectionViewController,UIImagePickerCon
             self.converAssestToImage()
             //self.collectionView.reloadData()
         }, completion: nil)
-//       let picker = UIImagePickerController()
-//        picker.sourceType = .photoLibrary
-//        //picker.delegate = self
-//        self.present(picker, animated: false)
+
     }
     
     func converAssestToImage() {
@@ -69,10 +63,17 @@ class AlbumCollectionViewController: UICollectionViewController,UIImagePickerCon
                 manager.requestImage(for: selectAssets[i], targetSize: CGSize(width: 60, height: 60), contentMode: .aspectFill, options: option, resultHandler:  { (result, info) in
                     thumbnail = result!
                 })
-                let data = thumbnail.jpegData(compressionQuality: 0.7)
+                let data = thumbnail.jpegData(compressionQuality: 1)
                 //let newImage = UIImage(data: data!)
-                let uploadImageRef = storageRef.child(albumName)
-                let uploadImage = uploadImageRef.putData(data!, metadata: nil) { (metadata, err) in
+                let storageRef = Storage.storage().reference().child("\(self.albumName)/photo\(String(i))")
+              //  let uploadImageRef = storageRef.child(albumName)
+                let photoURL = "photoURL" + String(i)
+                let photo = "photo" + String(i)
+                db.collection("album").document(albumName).updateData(["count": selectAssets.count])
+                
+                db.collection("album").document(albumName).updateData([photoURL: "gs://loginclubmanager.appspot.com/\(albumName)/\(photo)" ])
+                
+                let uploadImage = storageRef.putData(data!, metadata: nil) { (metadata, err) in
                     print("upload task finished")
                     print(err ?? "no err")
                     print(metadata ?? "no meta")
@@ -81,50 +82,91 @@ class AlbumCollectionViewController: UICollectionViewController,UIImagePickerCon
                     print(snapShot.progress ?? "no more progress")
                 }
                 uploadImage.resume()
-                //self.storageNow.child(newImage)
-//                var img = UIImageView()
-//                img.image = newImage
-                
-                //self.listImage.append(newImage!)
 
             }
-            print(" ---- completed \(self.listImage)")
-          //  self.collectionView.reloadData()
+           print(" ---- completed \(self.listImage)")
+        self.collectionView.reloadData()
         }
 
     }
     
-    
-//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-//        let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
-//        listImage.append(image)
-//        picker.dismiss(animated: true, completion: nil)
-//        self.collectionView.insertItems(at: [IndexPath(item: listImage.count, section: 0)])
-//    }
-//
-//
-//
-//    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-//        picker.dismiss(animated: true, completion: nil)
-//    }
-
-
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
+    func setListImage(){
+        db.collection("album").document(albumName).getDocument { (querySnap, err) in
+            if err != nil {
+                print("Error")
+            }
+            else {
+                self.count = querySnap!.data()!["count"] as! Int
+                for i in 0..<self.count {
+                    let index = "photoURL" + String(i)
+                    print(index)
+                    let img = querySnap?.data()![index] as! String
+                    print(img)
+                    //let newImage = UIImage(data: img)
+                    let ref = Storage.storage().reference(forURL: img)
+                    ref.getData(maxSize: 1*1024*1024) { (Data, err) in
+                        if err != nil {
+                            print("Error")
+                        }
+                        else {
+                            let newImg = UIImage(data: Data!)
+                            // print("--\(String(describing: newImg))")
+                            self.listImage.append(newImg!)
+                            print(self.listImage)
+                            // self.collectionView.reloadData()
+                        }
+                    }
+                }
+                
+            }
+        }
+        print("---\(self.listImage)")
+        self.collectionView.reloadData()
     }
+
+    
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return listImage.count
+        db.collection("album").document(albumName).getDocument { (querySnap, err) in
+            if err != nil {
+                print("Error")
+            }
+            else {
+                self.count = querySnap!.data()!["count"] as! Int
+            }
+        }
+        return self.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellAlbum", for: indexPath) as! cellAlbum
+         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellAlbum", for: indexPath)
+        db.collection("album").document(albumName).getDocument { (querySnap, err) in
+            let index = "photoURL" + String(indexPath.row)
+            //print(index)
+            let img = querySnap?.data()![index] as! String
+            //print(img)
+            //let newImage = UIImage(data: img)
+            let ref = Storage.storage().reference(forURL: img)
+            ref.getData(maxSize: 1*1024*1024) { (Data, err) in
+                if err != nil {
+                    print("Error")
+                }
+                else {
+                    cell.backgroundView?.largeContentImage = UIImage(data: Data!)
+                    // print("--\(String(describing: newImg))")
+                    //self.listImage.append(newImg!)
+                   // print(self.listImage)
+                    // self.collectionView.reloadData()
+                }
+            }
+        }
+        
+       
         // Configure the cell
-        cell.imageView.image =  listImage[indexPath.row]
-        cell.backgroundColor = .red
+       // cell.imageView.image =  listImage[indexPath.row]
+       cell.backgroundColor = .red
         return cell
     }
 
