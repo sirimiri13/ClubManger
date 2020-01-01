@@ -17,7 +17,7 @@ class MainViewController: UIViewController {
     let db = Firestore.firestore()
     var mail = Auth.auth().currentUser?.email
     var id : String = ""
-    @IBOutlet weak var idLabel: UILabel!
+    @IBOutlet weak var idLabel: UILabel!    
     override func viewDidLoad() {
         super.viewDidLoad()
          db.collection("admin").getDocuments { (querySnapshot, error) in

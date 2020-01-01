@@ -126,11 +126,11 @@
 				2D74266B239962AF0074DC00 /* SignUpViewController.swift */,
 				2D74266D239962BC0074DC00 /* LoginViewController.swift */,
 				2D742673239A38EA0074DC00 /* Constants.swift */,
-				2D87280F239FC5C6001C149E /* Utilities.swift */,
 				2DA1DDEC23A4E5F700EC685A /* CreateNewClubViewController.swift */,
 				2D971A5F23AA75DA000A79C2 /* PostViewController.swift */,
 				2DA6D2C723B1F53E0049A74E /* AlbumTableViewController.swift */,
 				2DA6D2C923B1FC690049A74E /* AlbumCollectionViewController.swift */,
+				2D87280F239FC5C6001C149E /* Utilities.swift */,
 				2D505F2823B4BDCF00FDC9AB /* AttendanceTableViewController.swift */,
 				2D505F2B23BA1AE400FDC9AB /* ListAttendanceTableViewController.swift */,
 			);

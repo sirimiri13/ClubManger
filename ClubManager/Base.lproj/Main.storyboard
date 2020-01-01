@@ -398,7 +398,7 @@
             </objects>
             <point key="canvasLocation" x="975" y="-1426"/>
         </scene>
-        <!--Album Table View Controller-->
+        <!--Album-->
         <scene sceneID="pMc-C4-WaK">
             <objects>
                 <tableViewController storyboardIdentifier="AlbumTableViewController" id="j4M-CB-CUA" customClass="AlbumTableViewController" customModule="ClubManager" customModuleProvider="target" sceneMemberID="viewController">
@@ -430,7 +430,7 @@
                             <outlet property="delegate" destination="j4M-CB-CUA" id="zWA-Ht-hP0"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="0Im-bi-SFQ">
+                    <navigationItem key="navigationItem" title="Album" id="0Im-bi-SFQ">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="QYY-Cm-RpG">
                             <connections>
                                 <segue destination="BYZ-38-t0r" kind="presentation" modalPresentationStyle="fullScreen" id="n0b-fa-GyF"/>
@@ -456,28 +456,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="PlM-Xs-qtM">
-                            <size key="itemSize" width="50" height="50"/>
+                            <size key="itemSize" width="126" height="135"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="cellAlbum" reuseIdentifier="cellAlbum" id="w8l-do-FWa" customClass="cellAlbum" customModule="ClubManager" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="136" height="144"/>
+                                <rect key="frame" x="0.0" y="0.0" width="126" height="135"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="WWR-v5-cml">
-                                    <rect key="frame" x="0.0" y="0.0" width="136" height="144"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="126" height="135"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Et-ut-TIt">
-                                            <rect key="frame" x="0.0" y="0.0" width="119" height="126"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ANW-RK-Arq">
+                                            <rect key="frame" x="0.0" y="-1" width="126" height="137"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                     </subviews>
                                 </collectionViewCellContentView>
-                                <size key="customSize" width="136" height="144"/>
+                                <size key="customSize" width="126" height="135"/>
                                 <connections>
-                                    <outlet property="imageView" destination="1Et-ut-TIt" id="YYx-rP-XvE"/>
+                                    <outlet property="imageView" destination="ANW-RK-Arq" id="Y20-Cs-H9J"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -1085,7 +1085,7 @@
             </objects>
             <point key="canvasLocation" x="-3767" y="165"/>
         </scene>
-        <!--Post Table View Controller-->
+        <!--POSTS-->
         <scene sceneID="4uV-xp-q42">
             <objects>
                 <tableViewController storyboardIdentifier="PostTableViewController" id="Vmj-Az-JUS" customClass="PostTableViewController" customModule="ClubManager" customModuleProvider="target" sceneMemberID="viewController">
@@ -1118,7 +1118,7 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="DPI-Ex-HlX">
+                    <navigationItem key="navigationItem" title="POSTS" id="DPI-Ex-HlX">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="cDY-YI-I6K">
                             <connections>
                                 <segue destination="BYZ-38-t0r" kind="presentation" modalPresentationStyle="fullScreen" id="4wH-UB-Lfr"/>
@@ -1565,31 +1565,11 @@
                                 <rect key="frame" x="0.0" y="105" width="414" height="415"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ohe-lO-K8U">
-                                <rect key="frame" x="0.0" y="712" width="414" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Login"/>
-                                <connections>
-                                    <segue destination="T1G-WW-cgG" kind="presentation" modalPresentationStyle="fullScreen" id="LbC-07-TJU"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Pa-WW-MNU">
-                                <rect key="frame" x="0.0" y="791" width="414" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Create New Club"/>
-                                <connections>
-                                    <action selector="createNewClubTapped:" destination="f6m-rs-mto" eventType="touchUpInside" id="2sB-OX-fdi"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="TKk-HW-d4M"/>
                     </view>
                     <navigationItem key="navigationItem" id="A9m-63-8wR"/>
-                    <connections>
-                        <outlet property="createNewClubButton" destination="1Pa-WW-MNU" id="FGA-bo-grn"/>
-                        <outlet property="loginButton" destination="Ohe-lO-K8U" id="vs1-au-0ZD"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XVk-Q9-RIw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1759,7 +1739,7 @@
             </objects>
             <point key="canvasLocation" x="-188" y="-2310"/>
         </scene>
-        <!--Member Table View Controller-->
+        <!--MEMBERS-->
         <scene sceneID="Xlf-tX-sAR">
             <objects>
                 <tableViewController storyboardIdentifier="MemberTableViewController" id="Shf-gH-tO6" customClass="MemberTableViewController" customModule="ClubManager" customModuleProvider="target" sceneMemberID="viewController">
@@ -1792,7 +1772,7 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="1ho-zT-S6Q">
+                    <navigationItem key="navigationItem" title="MEMBERS" id="1ho-zT-S6Q">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Sv4-3l-eeR">
                             <connections>
                                 <segue destination="BYZ-38-t0r" kind="presentation" modalPresentationStyle="fullScreen" id="qQk-gH-09P"/>
@@ -1954,6 +1934,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="v5Q-kk-oVY"/>
-        <segue reference="DZf-3Z-wsY"/>
+        <segue reference="4wH-UB-Lfr"/>
     </inferredMetricsTieBreakers>
 </document>

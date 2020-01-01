@@ -8,6 +8,7 @@
 
 import UIKit
 import Photos
+import FirebaseAuth
 import Firebase
 import BSImagePicker
 import SCLAlertView
@@ -21,36 +22,65 @@ class cellAlbum: UICollectionViewCell{
 
 class AlbumCollectionViewController: UICollectionViewController,UIImagePickerControllerDelegate , UINavigationControllerDelegate{
 
-    
-   
+    let mail = Auth.auth().currentUser?.email
+    var collect = ""
+    var forwardView : String = ""
     var count = 0
     let db = Firestore.firestore()
     var albumName : String = ""
     let storageRef = Storage.storage().reference()
     var selectAssets = [PHAsset]()
-    var listImage : [UIImage] = []
+    var listImage = [UIImage]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        //setListImage()
+        checkCollection()
+        if (forwardView == "AlbumTableViewController") {
+            setListImage()
+
+        }
+        self.navigationItem.title = albumName
+        
         collectionView.reloadData()
         print(albumName)
         
         
     }
     
+    
+
+    func checkCollection(){
+        db.collection("user").getDocuments { (querySnapshot, error) in
+                 for acc in querySnapshot!.documents{
+                     if (acc.documentID == self.mail){
+                        self.collect = "user"
+                    }
+            }
+        }
+        if (collect == "")
+            {
+                collect = "admin"
+            }
+
+    }
+    
     @IBAction func openLibrary(_ sender: Any) {
-       
-        let vc = BSImagePickerViewController()
-        self.bs_presentImagePickerController(vc, animated: false, select: { (assets: PHAsset) in
-        }, deselect: { (assets: PHAsset) in
-
-        }, cancel: {(assets: [PHAsset]) in        }, finish: { (assets: [PHAsset]) in
-            for i in 0..<assets.count{
-                self.selectAssets.append(assets[i])}
-            self.converAssestToImage()
-            //self.collectionView.reloadData()
-        }, completion: nil)
-
+        if  (collect == "admin"){
+            let vc = BSImagePickerViewController()
+            self.bs_presentImagePickerController(vc, animated: false, select: { (assets: PHAsset) in
+            }, deselect: { (assets: PHAsset) in
+                
+            }, cancel: {(assets: [PHAsset]) in        }, finish: { (assets: [PHAsset]) in
+                for i in 0..<assets.count{
+                    self.selectAssets.append(assets[i])}
+                self.converAssestToImage()
+                //self.collectionView.reloadData()
+            }, completion: nil)
+            
+        }
+        else {
+            let alert = SCLAlertView()
+            alert.showError("Add photo", subTitle: "You can not add new photo")
+        }
     }
     
     func converAssestToImage() {
@@ -64,28 +94,40 @@ class AlbumCollectionViewController: UICollectionViewController,UIImagePickerCon
                     thumbnail = result!
                 })
                 let data = thumbnail.jpegData(compressionQuality: 1)
+                db.collection("album").document(albumName).getDocument { (querySnap, err) in
+                    self.count = querySnap!.data()!["count"]  as! Int
+                }
+                var index = count + i
+                print(index)
                 //let newImage = UIImage(data: data!)
-                let storageRef = Storage.storage().reference().child("\(self.albumName)/photo\(String(i))")
+                let storageRef = Storage.storage().reference().child("\(self.albumName)/photo\(String(index))")
               //  let uploadImageRef = storageRef.child(albumName)
-                let photoURL = "photoURL" + String(i)
-                let photo = "photo" + String(i)
-                db.collection("album").document(albumName).updateData(["count": selectAssets.count])
+                let photoURL = "photoURL" + String(index)
+                let photo = "photo" + String(index)
+                let newCount = selectAssets.count + count
+                db.collection("album").document(albumName).updateData(["count": newCount])
                 
                 db.collection("album").document(albumName).updateData([photoURL: "gs://loginclubmanager.appspot.com/\(albumName)/\(photo)" ])
-                
+              
                 let uploadImage = storageRef.putData(data!, metadata: nil) { (metadata, err) in
                     print("upload task finished")
                     print(err ?? "no err")
                     print(metadata ?? "no meta")
+                    var img = UIImage(data: data!)
+                    self.listImage.append(img!)
+                    self.collectionView.reloadData()
                 }
+               // var pathPhoto = "gs://loginclubmanager.appspot.com/\(albumName)/\(photo)"
+//                var img = UIImage(data: data!)
+//                listImage.append(img!)
+//                collectionView.reloadData()
                 uploadImage.observe(.progress){(snapShot) in
                     print(snapShot.progress ?? "no more progress")
                 }
                 uploadImage.resume()
 
             }
-           print(" ---- completed \(self.listImage)")
-        self.collectionView.reloadData()
+          //  self.setListImage()
         }
 
     }
@@ -113,7 +155,7 @@ class AlbumCollectionViewController: UICollectionViewController,UIImagePickerCon
                             // print("--\(String(describing: newImg))")
                             self.listImage.append(newImg!)
                             print(self.listImage)
-                            // self.collectionView.reloadData()
+                            self.collectionView.reloadData()
                         }
                     }
                 }
@@ -129,44 +171,18 @@ class AlbumCollectionViewController: UICollectionViewController,UIImagePickerCon
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        db.collection("album").document(albumName).getDocument { (querySnap, err) in
-            if err != nil {
-                print("Error")
-            }
-            else {
-                self.count = querySnap!.data()!["count"] as! Int
-            }
-        }
-        return self.count
+       return listImage.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellAlbum", for: indexPath)
-        db.collection("album").document(albumName).getDocument { (querySnap, err) in
-            let index = "photoURL" + String(indexPath.row)
-            //print(index)
-            let img = querySnap?.data()![index] as! String
-            //print(img)
-            //let newImage = UIImage(data: img)
-            let ref = Storage.storage().reference(forURL: img)
-            ref.getData(maxSize: 1*1024*1024) { (Data, err) in
-                if err != nil {
-                    print("Error")
-                }
-                else {
-                    cell.backgroundView?.largeContentImage = UIImage(data: Data!)
-                    // print("--\(String(describing: newImg))")
-                    //self.listImage.append(newImg!)
-                   // print(self.listImage)
-                    // self.collectionView.reloadData()
-                }
-            }
-        }
+         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellAlbum", for: indexPath) as! cellAlbum
         
-       
-        // Configure the cell
-       // cell.imageView.image =  listImage[indexPath.row]
-       cell.backgroundColor = .red
+        let image = listImage[indexPath.row]
+//        let imageView = UIImageView()
+//        imageView.image = image
+//        cell.contentView.addSubview(imageView)
+        cell.imageView.image =  listImage[indexPath.row]
+       //cell.backgroundColor = .red
         return cell
     }
 

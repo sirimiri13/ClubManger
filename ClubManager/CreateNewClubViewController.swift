@@ -59,7 +59,7 @@ class CreateNewClubViewController: UIViewController {
                     }
                     else{
                        let db =  Firestore.firestore()
-                        db.collection("admin").document(email).setData(["email" : email, "club" : club , "pass" : pass ,"fund": "","uid"  : result?.user.uid ?? ""])  {(error) in
+                        db.collection("admin").document(email).setData(["email" : email, "club" : club , "pass" : pass ,"uid"  : result?.user.uid ?? ""])  {(error) in
                         if error != nil {
                             self.showError(message: "* Error saving user")
                         }

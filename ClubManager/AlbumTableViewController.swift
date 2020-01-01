@@ -9,9 +9,12 @@
 import UIKit
 import FirebaseAuth
 import Firebase
+import SCLAlertView
 
 
 class AlbumTableViewController: UITableViewController {
+    let mail = Auth.auth().currentUser?.email
+    var collect = ""
     var newAlbumTextField = UITextField()
     let storageRef = Storage.storage().reference()
     let db = Firestore.firestore()
@@ -20,19 +23,44 @@ class AlbumTableViewController: UITableViewController {
         super.viewDidLoad()
         setListAlbum()
         tableView.reloadData()
+        checkCollection()
         
     }
 
-    @IBAction func addAlbum(_ sender: Any) {
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        let createAction = UIAlertAction(title: "Create", style: .default, handler:self.createAlbumTapped(alert:))
-        let alert = UIAlertController(title: "Create New Album", message: "", preferredStyle:.alert)
-        alert.addTextField { (newAlbumTextField) in
-            self.setNewAblumTextField(textField: newAlbumTextField)
+    
+        func checkCollection(){
+            db.collection("user").getDocuments { (querySnapshot, error) in
+                     for acc in querySnapshot!.documents{
+                         if (acc.documentID == self.mail){
+                            self.collect = "user"
+                        }
+                }
+            }
+            if (collect == "")
+                {
+                    collect = "admin"
+                }
+
         }
-        alert.addAction(cancelAction)
-        alert.addAction(createAction)
-        self.present(alert, animated: false)
+        
+    
+    @IBAction func addAlbum(_ sender: Any) {
+        if (collect == "admin"){
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                 let createAction = UIAlertAction(title: "Create", style: .default, handler:self.createAlbumTapped(alert:))
+                 let alert = UIAlertController(title: "Create New Album", message: "", preferredStyle:.alert)
+                 alert.addTextField { (newAlbumTextField) in
+                     self.setNewAblumTextField(textField: newAlbumTextField)
+                 }
+                 alert.addAction(cancelAction)
+                 alert.addAction(createAction)
+                 self.present(alert, animated: false)
+        }
+        else {
+            let alert = SCLAlertView()
+            alert.showError("Create new Album", subTitle: "You can not create new album")
+        }
+     
     }
     func setNewAblumTextField(textField : UITextField){
         newAlbumTextField = textField
@@ -41,12 +69,13 @@ class AlbumTableViewController: UITableViewController {
     
     func createAlbumTapped(alert: UIAlertAction){
         let album = newAlbumTextField.text
-        db.collection("album").document(album!).setData(["albumName": album])
+        db.collection("album").document(album!).setData(["albumName": album ,"count": "0"])
        // db.collection("album").documemnt(album).setData(["albumName" : album])
         //let imagesRef = storageRef.child(album!)
         let vc = storyboard?.instantiateViewController(withIdentifier: "AlbumCollectionViewController") as! AlbumCollectionViewController
         vc.albumName = album!
         let navController = UINavigationController(rootViewController: vc)
+        navController.navigationItem.title = album
         navController.modalPresentationStyle = .fullScreen
         self.present(navController, animated: false)
         
@@ -87,9 +116,11 @@ class AlbumTableViewController: UITableViewController {
         let album = listAlbum[indexPath.row]
         print("---\(album)")
         let vc = storyboard?.instantiateViewController(withIdentifier: "AlbumCollectionViewController") as! AlbumCollectionViewController
+        vc.forwardView = "AlbumTableViewController"
         vc.albumName = album
         let navController = UINavigationController(rootViewController: vc)
         navController.modalPresentationStyle = .fullScreen
+        navController.navigationItem.title = album
         self.present(navController, animated: false)
     }
     /*
