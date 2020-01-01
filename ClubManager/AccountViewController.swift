@@ -15,6 +15,7 @@ class AccountViewController: UIViewController {
     var ID : String = ""
     var email : String = ""
     var phone : String = ""
+    var mPoint : String = ""
     var collect = ""
     var forwardView : String = ""
     let db = Firestore.firestore()
@@ -33,6 +34,8 @@ class AccountViewController: UIViewController {
     @IBOutlet weak var emailLabel: UILabel!
     
     
+    @IBOutlet weak var point: UILabel!
+    @IBOutlet weak var pointLabel: UILabel!
     
     override func viewDidLoad() {
        
@@ -53,6 +56,8 @@ class AccountViewController: UIViewController {
             lastNameLabel.textColor = .red
             idLabel.textColor = .red
             phoneLabel.textColor = .red
+            pointLabel.alpha = 0
+            point.alpha = 0
         }
           Utilities.styleFilledButton(backButton)
 
@@ -66,6 +71,7 @@ class AccountViewController: UIViewController {
         idLabel.text = ID
         emailLabel.text = email
         phoneLabel.text = phone
+        pointLabel.text = mPoint
     
     }
     @IBAction func backTapped(_ sender: Any) {

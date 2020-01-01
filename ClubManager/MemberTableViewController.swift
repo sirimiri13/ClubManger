@@ -17,6 +17,7 @@ struct Member {
     var ID : String
     var email: String
     var phone : String
+    var point : String
 }
 class MemberTableViewController: UITableViewController {
     var listMember : [Member] = []
@@ -75,6 +76,8 @@ class MemberTableViewController: UITableViewController {
         viewController.ID = memberSelected.ID
         viewController.email = memberSelected.email
         viewController.phone = memberSelected.phone
+        viewController.mPoint = memberSelected.point
+        
         viewController.forwardView = "MemberTableViewController"
        // performSegue(withIdentifier: "unwindToAccountFromMember", sender: self)
         viewController.modalPresentationStyle = .fullScreen
@@ -102,11 +105,24 @@ class MemberTableViewController: UITableViewController {
                 let ID = user.data()["ID"]
                 let email = user.data()["email"]
                 let phone = user.data()["phone"]
-                let member = Member(firstName: fName as! String, lastName: lName as! String, ID: ID as! String , email: email as! String, phone: phone as! String)
+                let point = user.data()["point"]
+                let member = Member(firstName: fName as! String, lastName: lName as! String, ID: ID as! String , email: email as! String, phone: phone as! String, point : point as! String)
                 print(member)
                 self.listMember.append(member)
-                self.tableView.reloadData()
+//                for i in 0..<self.listMember.count - 1{
+//                    for j in 1..<self.listMember.count {
+//                        let pointI = self.listMember[i].point
+//                        let pointJ = self.listMember[j].point
+//                        let pointIInt = Int(pointI)!
+//                        let pointJInt = Int(pointJ)!
+//                        if (pointIInt < pointJInt) {
+//                            self.listMember.swapAt(i,j)
+//                        }
+//                    }
+//                }
+//
             }
+            self.tableView.reloadData()
         }
         
     }

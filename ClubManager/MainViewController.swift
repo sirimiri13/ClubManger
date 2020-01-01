@@ -85,6 +85,7 @@ class MainViewController: UIViewController {
                                 vc.ID = snapshot?.data()!["ID"] as! String
                                 vc.email = snapshot?.data()!["email"] as! String
                                 vc.phone = snapshot?.data()?["phone"] as! String
+                                vc.mPoint = snapshot?.data()?["point"] as! String
                                 vc.forwardView = "MainViewController"
                                 vc.modalPresentationStyle = .fullScreen
                                 self.present(vc, animated: false)

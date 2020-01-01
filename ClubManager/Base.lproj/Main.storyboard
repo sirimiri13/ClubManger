@@ -524,7 +524,7 @@
                     <navigationItem key="navigationItem" title="Image" id="mpQ-eN-Cgh">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="btb-or-Rmy">
                             <connections>
-                                <segue destination="3dB-9m-vLI" kind="presentation" modalPresentationStyle="fullScreen" id="gSb-dc-bif"/>
+                                <action selector="cancelTapped:" destination="Mon-21-qFy" id="E1Q-yr-MCj"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -782,6 +782,26 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0yK-tE-yOw">
+                                <rect key="frame" x="17" y="556" width="59" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Point:">
+                                        <attributes>
+                                            <font key="NSFont" size="18" name="AmericanTypewriter-Semibold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7MJ-Gy-A78">
+                                <rect key="frame" x="130" y="556" width="264" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="8U4-m7-Ucf"/>
@@ -795,11 +815,13 @@
                         <outlet property="idLabel" destination="TVF-A1-BQj" id="X9A-y3-3bO"/>
                         <outlet property="lastNameLabel" destination="q88-YR-EY0" id="AKm-vQ-3yT"/>
                         <outlet property="phoneLabel" destination="Z8Z-es-SXD" id="vNO-In-ybW"/>
+                        <outlet property="point" destination="0yK-tE-yOw" id="pf4-St-H2s"/>
+                        <outlet property="pointLabel" destination="7MJ-Gy-A78" id="3M3-FI-adL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gh1-PW-hkN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3197" y="-560"/>
+            <point key="canvasLocation" x="-3197.1014492753625" y="-560.49107142857144"/>
         </scene>
         <!--Attendance-->
         <scene sceneID="0rg-w4-1VM">

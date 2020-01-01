@@ -139,6 +139,7 @@ class AttendanceViewController: UIViewController, UITableViewDelegate, UITableVi
             for user in querySnapshot!.documents{
                 let ID = user.data()["ID"] as! String
                 if (ID == self.idTextField.text){
+                  
                     let fName = user.data()["firstName"] as! String
                     let lName = user.data()["lastName"] as! String
                     let name = lName + " " + fName
@@ -150,11 +151,15 @@ class AttendanceViewController: UIViewController, UITableViewDelegate, UITableVi
                     self.idTextField.text = ""
                     self.db.collection("event").document(self.eventName).updateData([id: newID])
                     self.db.collection("event").document(self.eventName).updateData(["count": self.count + 1])
+                    let point = user.data()["point"] as! String
+                    let newPoint = Int(point)! + 1
+                    self.db.collection("user").document(user.data()["email"] as! String).updateData(["point" : String(newPoint)])
                     self.count += 1
                 }
                
             }
         }
+        
     }
     
     

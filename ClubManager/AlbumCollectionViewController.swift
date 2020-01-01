@@ -34,10 +34,10 @@ class AlbumCollectionViewController: UICollectionViewController,UIImagePickerCon
     override func viewDidLoad() {
         super.viewDidLoad()
         checkCollection()
-        if (forwardView == "AlbumTableViewController") {
-            setListImage()
-
+        if (forwardView == "AlbumTableViewController" || forwardView == "DetailPhoto") {
+          setListImage()
         }
+      
         self.navigationItem.title = albumName
         
         collectionView.reloadData()
@@ -190,6 +190,7 @@ class AlbumCollectionViewController: UICollectionViewController,UIImagePickerCon
         let vc = storyboard?.instantiateViewController(withIdentifier: "DetailPhotoViewController") as! DetailPhotoViewController
         let navController = UINavigationController(rootViewController: vc)
         vc.image = listImage[indexPath.row]
+        vc.album = albumName
         navController.modalPresentationStyle = .fullScreen
         self.present(navController, animated: true)
     }

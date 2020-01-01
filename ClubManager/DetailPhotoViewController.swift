@@ -12,6 +12,7 @@ class DetailPhotoViewController: UIViewController {
 
     @IBOutlet weak var imageView: UIImageView!
     var image = UIImage()
+    var album : String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         imageView.image = image
@@ -19,7 +20,15 @@ class DetailPhotoViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-   
+    @IBAction func cancelTapped(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "AlbumCollectionViewController") as! AlbumCollectionViewController
+        vc.forwardView = "DetailPhoto"
+        vc.albumName = album
+        let navController = UINavigationController(rootViewController: vc)
+        navController.modalPresentationStyle = .fullScreen
+        self.present(navController, animated: false)
+    }
+    
     /*
     // MARK: - Navigation
 
