@@ -185,6 +185,14 @@ class AlbumCollectionViewController: UICollectionViewController,UIImagePickerCon
        //cell.backgroundColor = .red
         return cell
     }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "DetailPhotoViewController") as! DetailPhotoViewController
+        let navController = UINavigationController(rootViewController: vc)
+        vc.image = listImage[indexPath.row]
+        navController.modalPresentationStyle = .fullScreen
+        self.present(navController, animated: true)
+    }
 
 
 }

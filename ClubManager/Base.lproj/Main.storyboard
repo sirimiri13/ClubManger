@@ -505,6 +505,37 @@
             </objects>
             <point key="canvasLocation" x="5334.7826086956529" y="-560.49107142857144"/>
         </scene>
+        <!--Image-->
+        <scene sceneID="Yv6-yd-uho">
+            <objects>
+                <viewController storyboardIdentifier="DetailPhotoViewController" id="Mon-21-qFy" customClass="DetailPhotoViewController" customModule="ClubManager" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Pay-hF-VrI">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lwj-rm-KyW">
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="hNv-OW-bLv"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Image" id="mpQ-eN-Cgh">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="btb-or-Rmy">
+                            <connections>
+                                <segue destination="3dB-9m-vLI" kind="presentation" modalPresentationStyle="fullScreen" id="gSb-dc-bif"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="imageView" destination="lwj-rm-KyW" id="noI-Ju-jHZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Bq-Jw-dJP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7239.130434782609" y="-577.23214285714278"/>
+        </scene>
         <!--Create Fund View Controller-->
         <scene sceneID="W5c-22-iLf">
             <objects>
@@ -1920,6 +1951,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZFo-Er-nRu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1794" y="149"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="kLQ-dN-pZa">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cT1-j4-agM" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Q09-i6-opX">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Mon-21-qFy" kind="relationship" relationship="rootViewController" id="wwS-Vr-xNy"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KuY-J7-2p2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6328.985507246377" y="-577.23214285714278"/>
         </scene>
     </scenes>
     <resources>

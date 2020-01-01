@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D15CF4123BCD1520097C65A /* DetailPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D15CF4023BCD1520097C65A /* DetailPhotoViewController.swift */; };
 		2D505F2923B4BDCF00FDC9AB /* AttendanceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D505F2823B4BDCF00FDC9AB /* AttendanceTableViewController.swift */; };
 		2D505F2C23BA1AE400FDC9AB /* ListAttendanceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D505F2B23BA1AE400FDC9AB /* ListAttendanceTableViewController.swift */; };
 		2D74266A239962800074DC00 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D742669239962800074DC00 /* MainViewController.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D15CF4023BCD1520097C65A /* DetailPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPhotoViewController.swift; sourceTree = "<group>"; };
 		2D505F2823B4BDCF00FDC9AB /* AttendanceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceTableViewController.swift; sourceTree = "<group>"; };
 		2D505F2B23BA1AE400FDC9AB /* ListAttendanceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAttendanceTableViewController.swift; sourceTree = "<group>"; };
 		2D742669239962800074DC00 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				2D87280F239FC5C6001C149E /* Utilities.swift */,
 				2D505F2823B4BDCF00FDC9AB /* AttendanceTableViewController.swift */,
 				2D505F2B23BA1AE400FDC9AB /* ListAttendanceTableViewController.swift */,
+				2D15CF4023BCD1520097C65A /* DetailPhotoViewController.swift */,
 			);
 			path = ClubManager;
 			sourceTree = "<group>";
@@ -276,6 +279,7 @@
 				2D80721523961090007F4083 /* AccountViewController.swift in Sources */,
 				2D807219239610AE007F4083 /* ChangePassViewController.swift in Sources */,
 				2DA1DDED23A4E5F700EC685A /* CreateNewClubViewController.swift in Sources */,
+				2D15CF4123BCD1520097C65A /* DetailPhotoViewController.swift in Sources */,
 				2D8071FB239602EC007F4083 /* AppDelegate.swift in Sources */,
 				2D872810239FC5C6001C149E /* Utilities.swift in Sources */,
 				2D8072172396109C007F4083 /* EditAccountViewController.swift in Sources */,
