@@ -32,13 +32,13 @@ class CreatePostViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.HiddenKeyBoard()
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
        setUpElement()
         // Do any additional setup after loading the view.
         timePicker.addTarget(self, action: #selector(CreatePostViewController.dataPickerChanged(_:)), for: .valueChanged)
     }
-    @objc func dissmissKeyboard() {
-               view.endEditing(true)
-           }
+
     func setUpElement(){
         Utilities.styleTextField(titleTextField)
         Utilities.styleTextField(addressTextField)
@@ -99,6 +99,19 @@ class CreatePostViewController: UIViewController {
            view.window?.makeKeyAndVisible()
        }
 
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
+    }
 }
 
 extension CreatePostViewController{

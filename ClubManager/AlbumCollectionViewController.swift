@@ -72,9 +72,12 @@ class AlbumCollectionViewController: UICollectionViewController,UIImagePickerCon
             }, cancel: {(assets: [PHAsset]) in        }, finish: { (assets: [PHAsset]) in
                 for i in 0..<assets.count{
                     self.selectAssets.append(assets[i])}
+               
                 self.converAssestToImage()
+                 self.selectAssets.removeAll()
                 //self.collectionView.reloadData()
             }, completion: nil)
+            
             
         }
         else {

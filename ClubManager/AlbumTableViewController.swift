@@ -69,7 +69,7 @@ class AlbumTableViewController: UITableViewController {
     
     func createAlbumTapped(alert: UIAlertAction){
         let album = newAlbumTextField.text
-        db.collection("album").document(album!).setData(["albumName": album ,"count": "0"])
+        db.collection("album").document(album!).setData(["albumName": album ,"count": 0])
        // db.collection("album").documemnt(album).setData(["albumName" : album])
         //let imagesRef = storageRef.child(album!)
         let vc = storyboard?.instantiateViewController(withIdentifier: "AlbumCollectionViewController") as! AlbumCollectionViewController

@@ -49,6 +49,8 @@ class AttendanceViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var eventNameLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.HiddenKeyBoard()
         checkCollection()
         idTextField.delegate = self
         setUpElement()
@@ -291,4 +293,15 @@ class AttendanceViewController: UIViewController, UITableViewDelegate, UITableVi
                return autoCompleteResult
            }
 
+}
+
+extension AttendanceViewController{
+    func HiddenKeyBoard(){
+        
+        let Tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(textDismissKeyboard))
+        view.addGestureRecognizer(Tap)
+    }
+    @objc func textDismissKeyboard(){
+        view.endEditing(true)
+    }
 }

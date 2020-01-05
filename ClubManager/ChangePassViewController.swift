@@ -38,10 +38,7 @@ class ChangePassViewController: UIViewController {
         
         print(collect)
     }
-    @objc func dissmissKeyboard() {
-               view.endEditing(true)
-           }
-        // Do any additional setup after loading the view.
+ 
     func setUpElement(){
         Utilities.styleFilledButton(saveButton)
         Utilities.styleHollowButton(backButton)
