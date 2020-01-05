@@ -110,7 +110,7 @@ class AlbumCollectionViewController: UICollectionViewController,UIImagePickerCon
                 let newCount = selectAssets.count + count
                 db.collection("album").document(albumName).updateData(["count": newCount])
                 
-                db.collection("album").document(albumName).updateData([photoURL: "gs://loginclubmanager.appspot.com/\(albumName)/\(photo)" ])
+                db.collection("album").document(albumName).updateData([photoURL: "gs://clubmanager-8543b.appspot.com/\(albumName)/\(photo)" ])
               
                 let uploadImage = storageRef.putData(data!, metadata: nil) { (metadata, err) in
                     print("upload task finished")

@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D07A77B23C1D46B0039714D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2D07A77A23C1D46B0039714D /* GoogleService-Info.plist */; };
 		2D15CF4123BCD1520097C65A /* DetailPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D15CF4023BCD1520097C65A /* DetailPhotoViewController.swift */; };
 		2D505F2923B4BDCF00FDC9AB /* AttendanceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D505F2823B4BDCF00FDC9AB /* AttendanceTableViewController.swift */; };
 		2D505F2C23BA1AE400FDC9AB /* ListAttendanceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D505F2B23BA1AE400FDC9AB /* ListAttendanceTableViewController.swift */; };
 		2D74266A239962800074DC00 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D742669239962800074DC00 /* MainViewController.swift */; };
 		2D74266C239962AF0074DC00 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D74266B239962AF0074DC00 /* SignUpViewController.swift */; };
 		2D74266E239962BC0074DC00 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D74266D239962BC0074DC00 /* LoginViewController.swift */; };
-		2D74267223996D4A0074DC00 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2D74267123996D4A0074DC00 /* GoogleService-Info.plist */; };
 		2D742674239A38EA0074DC00 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D742673239A38EA0074DC00 /* Constants.swift */; };
 		2D8071FB239602EC007F4083 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8071FA239602EC007F4083 /* AppDelegate.swift */; };
 		2D8071FD239602EC007F4083 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8071FC239602EC007F4083 /* SceneDelegate.swift */; };
@@ -39,13 +39,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D07A77A23C1D46B0039714D /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		2D07A77C23C1D6E30039714D /* ClubManagerRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ClubManagerRelease.entitlements; sourceTree = "<group>"; };
 		2D15CF4023BCD1520097C65A /* DetailPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPhotoViewController.swift; sourceTree = "<group>"; };
 		2D505F2823B4BDCF00FDC9AB /* AttendanceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceTableViewController.swift; sourceTree = "<group>"; };
 		2D505F2B23BA1AE400FDC9AB /* ListAttendanceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAttendanceTableViewController.swift; sourceTree = "<group>"; };
 		2D742669239962800074DC00 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		2D74266B239962AF0074DC00 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		2D74266D239962BC0074DC00 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		2D74267123996D4A0074DC00 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2D742673239A38EA0074DC00 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2D8071F7239602EC007F4083 /* ClubManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClubManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D8071FA239602EC007F4083 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -107,6 +108,8 @@
 		2D8071F9239602EC007F4083 /* ClubManager */ = {
 			isa = PBXGroup;
 			children = (
+				2D07A77C23C1D6E30039714D /* ClubManagerRelease.entitlements */,
+				2D07A77A23C1D46B0039714D /* GoogleService-Info.plist */,
 				2D8071FA239602EC007F4083 /* AppDelegate.swift */,
 				2D8071FC239602EC007F4083 /* SceneDelegate.swift */,
 				2D8071FE239602EC007F4083 /* ViewController.swift */,
@@ -114,7 +117,6 @@
 				2D807203239602F8007F4083 /* Assets.xcassets */,
 				2D807205239602F8007F4083 /* LaunchScreen.storyboard */,
 				2D807208239602F8007F4083 /* Info.plist */,
-				2D74267123996D4A0074DC00 /* GoogleService-Info.plist */,
 				2D80720E239605C2007F4083 /* CreatePostViewController.swift */,
 				2D80721223961078007F4083 /* PostTableViewController.swift */,
 				2D80721423961090007F4083 /* AccountViewController.swift */,
@@ -218,7 +220,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D807207239602F8007F4083 /* LaunchScreen.storyboard in Resources */,
-				2D74267223996D4A0074DC00 /* GoogleService-Info.plist in Resources */,
+				2D07A77B23C1D46B0039714D /* GoogleService-Info.plist in Resources */,
 				2D807204239602F8007F4083 /* Assets.xcassets in Resources */,
 				2D807202239602EC007F4083 /* Main.storyboard in Resources */,
 			);
@@ -461,6 +463,7 @@
 			baseConfigurationReference = E6E4EE6B73A4263653C448B2 /* Pods-ClubManager.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ClubManager/ClubManagerRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UD93T2GPM2;
 				INFOPLIST_FILE = ClubManager/Info.plist;
