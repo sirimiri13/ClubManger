@@ -83,7 +83,7 @@ class AttendanceTableViewController: UITableViewController {
     }
     func createEvent(alert: UIAlertAction){
 
-        db.collection("event").document(eventTextField.text!).setData(["eventName": eventTextField.text, "count": "0"])
+        db.collection("event").document(eventTextField.text!).setData(["eventName": eventTextField.text, "count": 0])
         
         let vc = storyboard?.instantiateViewController(withIdentifier: "AttendanceViewController") as! AttendanceViewController
         vc.eventName = eventTextField.text!
